@@ -1,8 +1,8 @@
 from parameterized import parameterized
 
-from clickhouse_driver import errors
-from clickhouse_driver.columns.service import get_column_by_spec
-from clickhouse_driver.context import Context
+from datastore_driver import errors
+from datastore_driver.columns.service import get_column_by_spec
+from datastore_driver.context import Context
 
 from tests.numpy.testcase import NumpyBaseTestCase
 

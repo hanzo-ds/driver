@@ -1,23 +1,23 @@
 ClickHouse Python Driver
 ========================
 
-.. image:: https://img.shields.io/pypi/v/clickhouse-driver.svg
-    :target: https://pypi.org/project/clickhouse-driver
+.. image:: https://img.shields.io/pypi/v/datastore-driver.svg
+    :target: https://pypi.org/project/datastore-driver
 
-.. image:: https://coveralls.io/repos/github/mymarilyn/clickhouse-driver/badge.svg?branch=master
-    :target: https://coveralls.io/github/mymarilyn/clickhouse-driver?branch=master
+.. image:: https://coveralls.io/repos/github/mymarilyn/datastore-driver/badge.svg?branch=master
+    :target: https://coveralls.io/github/mymarilyn/datastore-driver?branch=master
 
-.. image:: https://img.shields.io/pypi/l/clickhouse-driver.svg
-    :target: https://pypi.org/project/clickhouse-driver
+.. image:: https://img.shields.io/pypi/l/datastore-driver.svg
+    :target: https://pypi.org/project/datastore-driver
 
-.. image:: https://img.shields.io/pypi/pyversions/clickhouse-driver.svg
-    :target: https://pypi.org/project/clickhouse-driver
+.. image:: https://img.shields.io/pypi/pyversions/datastore-driver.svg
+    :target: https://pypi.org/project/datastore-driver
 
-.. image:: https://img.shields.io/pypi/dm/clickhouse-driver.svg
-    :target: https://pypi.org/project/clickhouse-driver
+.. image:: https://img.shields.io/pypi/dm/datastore-driver.svg
+    :target: https://pypi.org/project/datastore-driver
 
-.. image:: https://github.com/mymarilyn/clickhouse-driver/actions/workflows/actions.yml/badge.svg
-   :target: https://github.com/mymarilyn/clickhouse-driver/actions/workflows/actions.yml
+.. image:: https://github.com/mymarilyn/datastore-driver/actions/workflows/actions.yml/badge.svg
+   :target: https://github.com/mymarilyn/datastore-driver/actions/workflows/actions.yml
 
 ClickHouse Python Driver with native (TCP) interface support.
 
@@ -70,7 +70,7 @@ Features
 Documentation
 =============
 
-Documentation is available at https://clickhouse-driver.readthedocs.io.
+Documentation is available at https://datastore-driver.readthedocs.io.
 
 Usage
 =====
@@ -84,7 +84,7 @@ Pure Client example:
 
     .. code-block:: python
 
-        >>> from clickhouse_driver import Client
+        >>> from datastore_driver import Client
         >>>
         >>> client = Client('localhost')
         >>>
@@ -114,7 +114,7 @@ DB API example:
 
     .. code-block:: python
 
-        >>> from clickhouse_driver import connect
+        >>> from datastore_driver import connect
         >>>
         >>> conn = connect('clickhouse://localhost')
         >>> cursor = conn.cursor()

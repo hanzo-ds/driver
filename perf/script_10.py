@@ -1,5 +1,5 @@
 import sys
-from clickhouse_driver import Client
+from datastore_driver import Client
 
 cols = [
     'UniqueCarrier', 'Carrier', 'TailNum', 'FlightNum', 'Origin', 'OriginCityName', 'OriginState',

@@ -16,13 +16,13 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-from clickhouse_driver import __version__, VERSION
+from datastore_driver import __version__, VERSION
 
 # -- Project information -----------------------------------------------------
 
-project = u'clickhouse-driver'
-copyright = u'2017-2022, clickhouse-driver authors'
-author = u'clickhouse-driver authors'
+project = u'datastore-driver'
+copyright = u'2017-2022, datastore-driver authors'
+author = u'datastore-driver authors'
 
 # The short X.Y version
 version = '.'.join(str(x) for x in VERSION[:2])
@@ -99,7 +99,7 @@ html_static_path = ['_static']
 html_theme_options = {
     "description": "Python driver for ClickHouse",
     "github_user": "mymarilyn",
-    "github_repo": "clickhouse-driver",
+    "github_repo": "datastore-driver",
     "fixed_sidebar": True,
     "sidebar_width": '300px',
     "page_width": '1000px'
@@ -123,7 +123,7 @@ html_css_files = [
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'clickhouse-driverdoc'
+htmlhelp_basename = 'datastore-driverdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -150,7 +150,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'clickhouse-driver.tex', u'clickhouse-driver Documentation',
+    (master_doc, 'datastore-driver.tex', u'datastore-driver Documentation',
      author, 'manual'),
 ]
 
@@ -160,7 +160,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'clickhouse-driver', u'clickhouse-driver Documentation',
+    (master_doc, 'datastore-driver', u'datastore-driver Documentation',
      [author], 1)
 ]
 
@@ -171,8 +171,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'clickhouse-driver', u'clickhouse-driver Documentation',
-     author, 'clickhouse-driver', 'One line description of project.',
+    (master_doc, 'datastore-driver', u'datastore-driver Documentation',
+     author, 'datastore-driver', 'One line description of project.',
      'Miscellaneous'),
 ]
 

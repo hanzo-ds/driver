@@ -30,7 +30,7 @@ Starting from version *0.2.3* there are wheels for musl-based Linux distribution
 Dependencies
 ------------
 
-These distributions will be installed automatically when installing clickhouse-driver.
+These distributions will be installed automatically when installing datastore-driver.
 
 * `pytz`_ library for timezone calculations.
 * `enum34`_ backported Python 3.4 Enum.
@@ -62,21 +62,21 @@ The package can be installed using ``pip``:
 
     .. code-block:: bash
 
-       pip install clickhouse-driver
+       pip install datastore-driver
 
 You can install extras packages if you need compression support. Example of
 LZ4 compression requirements installation:
 
     .. code-block:: bash
 
-       pip install clickhouse-driver[lz4]
+       pip install datastore-driver[lz4]
 
 You also can specify multiple extras by using comma.
 Install LZ4 and ZSTD requirements:
 
     .. code-block:: bash
 
-       pip install clickhouse-driver[lz4,zstd]
+       pip install datastore-driver[lz4,zstd]
 
 
 .. _installation-numpy-support:
@@ -88,7 +88,7 @@ You can install additional packages (NumPy and Pandas) if you need NumPy support
 
     .. code-block:: bash
 
-       pip install clickhouse-driver[numpy]
+       pip install datastore-driver[numpy]
 
 NumPy supported versions are limited by ``numpy`` package python support.
 
@@ -100,4 +100,4 @@ Development version can be installed directly from github:
 
     .. code-block:: bash
 
-       pip install git+https://github.com/mymarilyn/clickhouse-driver@master#egg=clickhouse-driver
+       pip install git+https://github.com/mymarilyn/datastore-driver@master#egg=datastore-driver

@@ -72,7 +72,7 @@ Client with compression support can be constructed as follows:
 
     .. code-block:: python
 
-        >>> from clickhouse_driver import Client
+        >>> from datastore_driver import Client
         >>> client_with_lz4 = Client('localhost', compression=True)
         >>> client_with_lz4 = Client('localhost', compression='lz4')
         >>> client_with_zstd = Client('localhost', compression='zstd')
@@ -93,7 +93,7 @@ Secure connection
 
     .. code-block:: python
 
-        >>> from clickhouse_driver import Client
+        >>> from datastore_driver import Client
         >>>
         >>> client = Client('localhost', secure=True)
         >>> # Using self-signed certificate.
@@ -248,14 +248,14 @@ Query logs can be received from server by using `send_logs_level` setting:
         >>>
         >>> settings = {'send_logs_level': 'debug'}
         >>> client.execute('SELECT 1', settings=settings)
-        2018-12-14 10:24:53,873 INFO     clickhouse_driver.log: [ klebedev-ThinkPad-T460 ] [ 25 ] {b328ad33-60e8-4012-b4cc-97f44a7b28f2} <Debug> executeQuery: (from 127.0.0.1:57762) SELECT 1
-        2018-12-14 10:24:53,874 INFO     clickhouse_driver.log: [ klebedev-ThinkPad-T460 ] [ 25 ] {b328ad33-60e8-4012-b4cc-97f44a7b28f2} <Debug> executeQuery: Query pipeline:
+        2018-12-14 10:24:53,873 INFO     datastore_driver.log: [ klebedev-ThinkPad-T460 ] [ 25 ] {b328ad33-60e8-4012-b4cc-97f44a7b28f2} <Debug> executeQuery: (from 127.0.0.1:57762) SELECT 1
+        2018-12-14 10:24:53,874 INFO     datastore_driver.log: [ klebedev-ThinkPad-T460 ] [ 25 ] {b328ad33-60e8-4012-b4cc-97f44a7b28f2} <Debug> executeQuery: Query pipeline:
         Expression
          Expression
           One
 
-        2018-12-14 10:24:53,875 INFO     clickhouse_driver.log: [ klebedev-ThinkPad-T460 ] [ 25 ] {b328ad33-60e8-4012-b4cc-97f44a7b28f2} <Information> executeQuery: Read 1 rows, 1.00 B in 0.004 sec., 262 rows/sec., 262.32 B/sec.
-        2018-12-14 10:24:53,875 INFO     clickhouse_driver.log: [ klebedev-ThinkPad-T460 ] [ 25 ] {b328ad33-60e8-4012-b4cc-97f44a7b28f2} <Debug> MemoryTracker: Peak memory usage (for query): 40.23 KiB.
+        2018-12-14 10:24:53,875 INFO     datastore_driver.log: [ klebedev-ThinkPad-T460 ] [ 25 ] {b328ad33-60e8-4012-b4cc-97f44a7b28f2} <Information> executeQuery: Read 1 rows, 1.00 B in 0.004 sec., 262 rows/sec., 262.32 B/sec.
+        2018-12-14 10:24:53,875 INFO     datastore_driver.log: [ klebedev-ThinkPad-T460 ] [ 25 ] {b328ad33-60e8-4012-b4cc-97f44a7b28f2} <Debug> MemoryTracker: Peak memory usage (for query): 40.23 KiB.
         [(1,)]
 
 
@@ -271,7 +271,7 @@ This option is good for ClickHouse cluster with multiple replicas.
 
     .. code-block:: python
 
-        >>> from clickhouse_driver import Client
+        >>> from datastore_driver import Client
         >>> client = Client('host1', alt_hosts='host2:1234,host3,host4:5678')
 
 In example above on every *new* connection driver will use following sequence
@@ -291,7 +291,7 @@ for query execution will be picked with round-robin algorithm.
 
     .. code-block:: python
 
-        >>> from clickhouse_driver import Client
+        >>> from datastore_driver import Client
         >>> client = Client(
         ...     'host1', alt_hosts='host2:1234,host3', round_robin=True
         ... )
@@ -331,7 +331,7 @@ Parameters are expected in Python extended format codes, e.g.
 
     .. code-block:: python
 
-        >>> from clickhouse_driver import connect
+        >>> from datastore_driver import connect
         >>> conn = connect('clickhouse://localhost')
         >>> cursor = conn.cursor()
         >>>
@@ -392,7 +392,7 @@ You can use ``cursor_factory`` argument to get results as dicts or named tuples
 
     .. code-block:: python
 
-        >>> from clickhouse_driver.dbapi.extras import DictCursor
+        >>> from datastore_driver.dbapi.extras import DictCursor
         >>> with connect('clickhouse://localhost') as conn:
         >>>     with conn.cursor(cursor_factory=DictCursor) as cursor:
         >>>        cursor.execute('SELECT * FROM system.tables')
@@ -400,7 +400,7 @@ You can use ``cursor_factory`` argument to get results as dicts or named tuples
 
     .. code-block:: python
 
-        >>> from clickhouse_driver.dbapi.extras import NamedTupleCursor
+        >>> from datastore_driver.dbapi.extras import NamedTupleCursor
         >>> with connect('clickhouse://localhost') as conn:
         >>>     with conn.cursor(cursor_factory=NamedTupleCursor) as cursor:
         >>>        cursor.execute('SELECT * FROM system.tables')

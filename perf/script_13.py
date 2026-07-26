@@ -1,5 +1,5 @@
 import sys
-from clickhouse_driver import Client
+from datastore_driver import Client
 
 cols = [
     'Year', 'Quarter', 'Month', 'DayofMonth', 'DayOfWeek', 'AirlineID', 'OriginAirportID', 'OriginAirportSeqID',

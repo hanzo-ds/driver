@@ -1,8 +1,8 @@
 from datetime import date
 
 from tests.testcase import BaseTestCase
-from clickhouse_driver import errors
-from clickhouse_driver.errors import ServerException
+from datastore_driver import errors
+from datastore_driver.errors import ServerException
 from tests.util import require_server_version
 
 

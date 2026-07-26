@@ -3,15 +3,15 @@
 Quickstart
 ==========
 
-This page gives a good introduction to clickhouse-driver.
-It assumes you already have clickhouse-driver installed.
+This page gives a good introduction to datastore-driver.
+It assumes you already have datastore-driver installed.
 If you do not, head over to the :ref:`installation` section.
 
 A minimal working example looks like this:
 
     .. code-block:: python
 
-        >>> from clickhouse_driver import Client
+        >>> from datastore_driver import Client
         >>>
         >>> client = Client(host='localhost')
         >>>
@@ -71,7 +71,7 @@ Use ``%(myvar)s`` parameters instead.
 
 Server-side parameters supported since 0.2.6 version.
 Since 0.2.7 it's disabled by default to avoid "limit" and "offset" names collision.
-See, `issue <https://github.com/mymarilyn/clickhouse-driver/issues/376>`_.
+See, `issue <https://github.com/mymarilyn/datastore-driver/issues/376>`_.
 You can decide which side parameters should be rendered into placeholders with
 ``server_side_params``. If it's set to:
 

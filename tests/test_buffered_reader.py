@@ -1,7 +1,7 @@
 import socket
 from unittest import TestCase, mock
 
-from clickhouse_driver.bufferedreader import BufferedSocketReader
+from datastore_driver.bufferedreader import BufferedSocketReader
 
 
 class BufferedReaderTestCase(TestCase):

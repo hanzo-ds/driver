@@ -3,8 +3,8 @@ Supported types
 ===============
 
 Each ClickHouse type is deserialized to a corresponding Python type when SELECT queries are prepared.
-When serializing INSERT queries, clickhouse-driver accepts a broader range of Python types.
-The following ClickHouse types are supported by clickhouse-driver:
+When serializing INSERT queries, datastore-driver accepts a broader range of Python types.
+The following ClickHouse types are supported by datastore-driver:
 
 
 [U]Int8/16/32/64/128/256
@@ -147,7 +147,7 @@ SELECT type: :class:`str`.
         >>> client.execute('SELECT * FROM test')
         [('foo',), ('bar',), ('foo',)]
 
-*Starting from version 0.2.9* clickhouse-driver can handle special enum values:
+*Starting from version 0.2.9* datastore-driver can handle special enum values:
 ``'mro'`` and ``''``.
 
 Array(T)
@@ -388,7 +388,7 @@ Inserting data into nested column in ``clickhouse-client``:
 
       1 rows in set. Elapsed: 0.003 sec.
 
-Inserting data into nested column with ``clickhouse-driver``:
+Inserting data into nested column with ``datastore-driver``:
 
     .. code-block:: python
 
@@ -444,7 +444,7 @@ Inserting data into nested column in ``clickhouse-client``:
 
       1 rows in set. Elapsed: 0.003 sec.
 
-Inserting data into nested column with ``clickhouse-driver``:
+Inserting data into nested column with ``datastore-driver``:
 
     .. code-block:: python
 

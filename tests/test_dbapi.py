@@ -4,11 +4,11 @@ from contextlib import contextmanager
 import socket
 from unittest.mock import patch
 
-from clickhouse_driver import connect
-from clickhouse_driver.dbapi import (
+from datastore_driver import connect
+from datastore_driver.dbapi import (
     ProgrammingError, InterfaceError, OperationalError
 )
-from clickhouse_driver.dbapi.extras import DictCursor, NamedTupleCursor
+from datastore_driver.dbapi.extras import DictCursor, NamedTupleCursor
 from tests.testcase import BaseTestCase
 
 
@@ -491,6 +491,6 @@ class NamedTupleCursorFactoryTestCase(DBAPITestCaseBase):
 
             self.assertEqual(cursor.fetchone(), nt(0))
 
-            with patch('clickhouse_driver.dbapi.extras.namedtuple') as nt_mock:
+            with patch('datastore_driver.dbapi.extras.namedtuple') as nt_mock:
                 nt_mock.side_effect = ValueError
                 self.assertEqual(cursor.fetchone(), nt(1))

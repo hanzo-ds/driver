@@ -19,7 +19,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 def read_version():
     regexp = re.compile(r'^VERSION\W*=\W*\(([^\(\)]*)\)')
-    init_py = os.path.join(here, 'clickhouse_driver', '__init__.py')
+    init_py = os.path.join(here, 'datastore_driver', '__init__.py')
     with open(init_py, encoding='utf-8') as f:
         for line in f:
             match = regexp.match(line)
@@ -27,7 +27,7 @@ def read_version():
                 return match.group(1).replace(', ', '.')
         else:
             raise RuntimeError(
-                'Cannot find version in clickhouse_driver/__init__.py'
+                'Cannot find version in datastore_driver/__init__.py'
             )
 
 
@@ -38,20 +38,20 @@ with open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
 ext = '.pyx' if USE_CYTHON else '.c'
 extensions = [
     Extension(
-        'clickhouse_driver.bufferedreader',
-        ['clickhouse_driver/bufferedreader' + ext]
+        'datastore_driver.bufferedreader',
+        ['datastore_driver/bufferedreader' + ext]
     ),
     Extension(
-        'clickhouse_driver.bufferedwriter',
-        ['clickhouse_driver/bufferedwriter' + ext]
+        'datastore_driver.bufferedwriter',
+        ['datastore_driver/bufferedwriter' + ext]
     ),
     Extension(
-        'clickhouse_driver.columns.largeint',
-        ['clickhouse_driver/columns/largeint' + ext]
+        'datastore_driver.columns.largeint',
+        ['datastore_driver/columns/largeint' + ext]
     ),
     Extension(
-        'clickhouse_driver.varint',
-        ['clickhouse_driver/varint' + ext]
+        'datastore_driver.varint',
+        ['datastore_driver/varint' + ext]
     )
 ]
 
@@ -62,10 +62,10 @@ if USE_CYTHON:
 
     extensions = cythonize(extensions, compiler_directives=compiler_directives)
 
-github_url = 'https://github.com/mymarilyn/clickhouse-driver'
+github_url = 'https://github.com/mymarilyn/datastore-driver'
 
 setup(
-    name='clickhouse-driver',
+    name='datastore-driver',
     version=read_version(),
 
     description='Python driver with native interface for ClickHouse',
@@ -116,7 +116,7 @@ setup(
     keywords='ClickHouse db database cloud analytics',
 
     project_urls={
-        'Documentation': 'https://clickhouse-driver.readthedocs.io',
+        'Documentation': 'https://datastore-driver.readthedocs.io',
         'Changes': github_url + '/blob/master/CHANGELOG.md'
     },
     packages=find_packages('.', exclude=['tests*']),

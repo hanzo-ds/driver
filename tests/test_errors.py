@@ -1,6 +1,6 @@
 import pickle
 
-import clickhouse_driver.errors as err
+import datastore_driver.errors as err
 
 
 def picklable(o):

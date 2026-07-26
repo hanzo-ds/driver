@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from tests.testcase import BaseTestCase
-from clickhouse_driver import errors
+from datastore_driver import errors
 
 
 class FixedStringTestCase(BaseTestCase):

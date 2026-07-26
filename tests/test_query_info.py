@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 
-from clickhouse_driver import errors
+from datastore_driver import errors
 from tests.testcase import BaseTestCase
 
 

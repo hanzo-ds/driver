@@ -11,7 +11,7 @@ Client can be configured from the given URL:
 
     .. code-block:: python
 
-        >>> from clickhouse_driver import Client
+        >>> from datastore_driver import Client
         >>> client = Client.from_url(
         ...     'clickhouse://login:password@host:port/database'
         ... )
@@ -25,7 +25,7 @@ Connection to default database:
         >>> client = Client.from_url('clickhouse://localhost')
 
 
-Querystring arguments will be passed along to the :meth:`~clickhouse_driver.connection.Connection` class’s initializer:
+Querystring arguments will be passed along to the :meth:`~datastore_driver.connection.Connection` class’s initializer:
 
     .. code-block:: python
 
@@ -60,7 +60,7 @@ Data can be inserted into ClickHouse in the following way:
         >>> from csv import DictReader
         >>> from datetime import datetime
         >>>
-        >>> from clickhouse_driver import Client
+        >>> from datastore_driver import Client
         >>>
         >>>
         >>> def iter_csv(filename):
@@ -104,8 +104,8 @@ corresponding setting type from package or write your own type.
 
     .. code-block:: python
 
-        >>> from clickhouse_driver.settings.available import settings as available_settings, SettingBool
-        >>> from clickhouse_driver import Client
+        >>> from datastore_driver.settings.available import settings as available_settings, SettingBool
+        >>> from datastore_driver import Client
         >>>
         >>> available_settings['allow_suspicious_low_cardinality_types'] = SettingBool
         >>>
@@ -151,7 +151,7 @@ parameter.
 
     .. code-block:: python
 
-        >>> from clickhouse_driver import Client, defines
+        >>> from datastore_driver import Client, defines
         >>>
         >>> client = Client('localhost', client_revision=defines.DBMS_MIN_PROTOCOL_VERSION_WITH_INITIAL_QUERY_START_TIME)
         >>> client.execute('SELECT version()')

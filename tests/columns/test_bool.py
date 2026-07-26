@@ -1,5 +1,5 @@
 from tests.testcase import BaseTestCase
-from clickhouse_driver import errors
+from datastore_driver import errors
 
 
 class BoolTestCase(BaseTestCase):

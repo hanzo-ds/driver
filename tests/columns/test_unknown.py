@@ -1,8 +1,8 @@
 
 from unittest import TestCase
 
-from clickhouse_driver import errors
-from clickhouse_driver.columns.service import get_column_by_spec
+from datastore_driver import errors
+from datastore_driver.columns.service import get_column_by_spec
 
 
 class UnknownColumnTestCase(TestCase):

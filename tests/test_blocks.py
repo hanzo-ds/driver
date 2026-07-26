@@ -1,10 +1,10 @@
 import types
 from unittest.mock import patch
 
-from clickhouse_driver.errors import ServerException
+from datastore_driver.errors import ServerException
 from tests.testcase import BaseTestCase, file_config
 from tests.util import capture_logging
-from clickhouse_driver.util.helpers import chunks
+from datastore_driver.util.helpers import chunks
 
 
 class BlocksTestCase(BaseTestCase):
@@ -208,14 +208,14 @@ class LogTestCase(BaseTestCase):
     required_server_version = (18, 12, 13)
 
     def test_logs(self):
-        with capture_logging('clickhouse_driver.log', 'INFO') as buffer:
+        with capture_logging('datastore_driver.log', 'INFO') as buffer:
             settings = {'send_logs_level': 'debug'}
             query = 'SELECT 1'
             self.client.execute(query, settings=settings)
             self.assertIn(query, buffer.getvalue())
 
     def test_logs_insert(self):
-        with capture_logging('clickhouse_driver.log', 'INFO') as buffer:
+        with capture_logging('datastore_driver.log', 'INFO') as buffer:
             with self.create_table('a Int32'):
                 settings = {'send_logs_level': 'debug'}
 
@@ -240,7 +240,7 @@ class LogTestCase(BaseTestCase):
             )
 
         with self.created_client(compression='lz4') as client:
-            with capture_logging('clickhouse_driver.log', 'INFO') as buffer:
+            with capture_logging('datastore_driver.log', 'INFO') as buffer:
                 settings = {'send_logs_level': 'debug'}
                 query = 'SELECT 1'
                 client.execute(query, settings=settings)

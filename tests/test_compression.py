@@ -1,10 +1,10 @@
 from datetime import date, datetime
 from unittest import TestCase
 
-from clickhouse_driver import errors
-from clickhouse_driver.client import Client
-from clickhouse_driver.compression import get_compressor_cls
-from clickhouse_driver.compression.lz4 import Compressor
+from datastore_driver import errors
+from datastore_driver.client import Client
+from datastore_driver.compression import get_compressor_cls
+from datastore_driver.compression.lz4 import Compressor
 from .testcase import BaseTestCase, file_config
 
 

@@ -4,16 +4,16 @@
 
 ## [0.2.9] - 2024-08-16
 ### Added
-- Debug logging on columns read/write. Solves issue [#404](https://github.com/mymarilyn/clickhouse-driver/issues/404).
-- Separate `parse_url` function for external tools. Solves issue [#438](https://github.com/mymarilyn/clickhouse-driver/issues/438).
-- [NumPy] Support for pandas StringArray and ArrowStringArray writing. Solves issue [#337](https://github.com/mymarilyn/clickhouse-driver/issues/337). Pull request [#441](https://github.com/mymarilyn/clickhouse-driver/pull/441) by [Simon-Chenzw](https://github.com/Simon-Chenzw).
+- Debug logging on columns read/write. Solves issue [#404](https://github.com/mymarilyn/datastore-driver/issues/404).
+- Separate `parse_url` function for external tools. Solves issue [#438](https://github.com/mymarilyn/datastore-driver/issues/438).
+- [NumPy] Support for pandas StringArray and ArrowStringArray writing. Solves issue [#337](https://github.com/mymarilyn/datastore-driver/issues/337). Pull request [#441](https://github.com/mymarilyn/datastore-driver/pull/441) by [Simon-Chenzw](https://github.com/Simon-Chenzw).
 
 ### Fixed
 - `ssl.PROTOCOL_TLS` deprecation warning for Python 3.10+.
-- Trailing spaces in external tables declaration. Solves issue [#385](https://github.com/mymarilyn/clickhouse-driver/issues/385).
-- [Tests] Skip certificate validation test during run on local machine. Solves issue [#442](https://github.com/mymarilyn/clickhouse-driver/issues/442).
-- Handle special enum values: ``'mro'`` and ``''``. Solves issue [#333](https://github.com/mymarilyn/clickhouse-driver/issues/333).
-- [NumPy] Do not localize already localized pandas datetime. Solves issue [#444](https://github.com/mymarilyn/clickhouse-driver/issues/444).
+- Trailing spaces in external tables declaration. Solves issue [#385](https://github.com/mymarilyn/datastore-driver/issues/385).
+- [Tests] Skip certificate validation test during run on local machine. Solves issue [#442](https://github.com/mymarilyn/datastore-driver/issues/442).
+- Handle special enum values: ``'mro'`` and ``''``. Solves issue [#333](https://github.com/mymarilyn/datastore-driver/issues/333).
+- [NumPy] Do not localize already localized pandas datetime. Solves issue [#444](https://github.com/mymarilyn/datastore-driver/issues/444).
 - [Tests] Run tests for server 24+.
 
 ### Changed
@@ -21,73 +21,73 @@
 
 ## [0.2.8] - 2024-06-12
 ### Added
-- Lazy date LUT initialization for memory reducing. See [docs](https://clickhouse-driver.readthedocs.io/en/0.2.8/types.html#date-date32). Solves issue [#430](https://github.com/mymarilyn/clickhouse-driver/issues/430). Pull request [#431](https://github.com/mymarilyn/clickhouse-driver/pull/431) by [DaniilAnichin](https://github.com/DaniilAnichin).
-- Dependabot for up-to-date GitHub actions. Pull request [#421](https://github.com/mymarilyn/clickhouse-driver/pull/422) by [cclauss](https://github.com/cclauss).
+- Lazy date LUT initialization for memory reducing. See [docs](https://datastore-driver.readthedocs.io/en/0.2.8/types.html#date-date32). Solves issue [#430](https://github.com/mymarilyn/datastore-driver/issues/430). Pull request [#431](https://github.com/mymarilyn/datastore-driver/pull/431) by [DaniilAnichin](https://github.com/DaniilAnichin).
+- Dependabot for up-to-date GitHub actions. Pull request [#421](https://github.com/mymarilyn/datastore-driver/pull/422) by [cclauss](https://github.com/cclauss).
 
 ### Fixed
-- TCP keepalive idle_time_sec, interval_sec type to integer. Solves issue [#432](https://github.com/mymarilyn/clickhouse-driver/issues/432).
-- Empty Map type read IndexError. Solves issue [#433](https://github.com/mymarilyn/clickhouse-driver/issues/433).
-- Test on current versions of PyPy. Pull request [#424](https://github.com/mymarilyn/clickhouse-driver/pull/424) by [cclauss](https://github.com/cclauss).
-- Connection `verify=False` ignoring. Solves issue [#420](https://github.com/mymarilyn/clickhouse-driver/issues/420). Pull request [#421](https://github.com/mymarilyn/clickhouse-driver/pull/421) by [akurdyukov](https://github.com/akurdyukov).
+- TCP keepalive idle_time_sec, interval_sec type to integer. Solves issue [#432](https://github.com/mymarilyn/datastore-driver/issues/432).
+- Empty Map type read IndexError. Solves issue [#433](https://github.com/mymarilyn/datastore-driver/issues/433).
+- Test on current versions of PyPy. Pull request [#424](https://github.com/mymarilyn/datastore-driver/pull/424) by [cclauss](https://github.com/cclauss).
+- Connection `verify=False` ignoring. Solves issue [#420](https://github.com/mymarilyn/datastore-driver/issues/420). Pull request [#421](https://github.com/mymarilyn/datastore-driver/pull/421) by [akurdyukov](https://github.com/akurdyukov).
 
 ## [0.2.7] - 2024-02-20
 ### Added
 - Wheels for Python 3.12.
-- Toggle hostname verification with ``verify`` option. Solves issue [#378](https://github.com/mymarilyn/clickhouse-driver/issues/378). Pull request [#379](https://github.com/mymarilyn/clickhouse-driver/pull/379) by [adamleko](https://github.com/adamleko).
+- Toggle hostname verification with ``verify`` option. Solves issue [#378](https://github.com/mymarilyn/datastore-driver/issues/378). Pull request [#379](https://github.com/mymarilyn/datastore-driver/pull/379) by [adamleko](https://github.com/adamleko).
 
 ### Fixed
-- Date32 start interval changed to 1900-01-01. Solves issue [#409](https://github.com/mymarilyn/clickhouse-driver/issues/409).
-- Memory leak when clickhouse raise exception on ``BufferedSocketWriter.write_into_stream``. Solves issue [#406](https://github.com/mymarilyn/clickhouse-driver/issues/406). Pull request [#407](https://github.com/mymarilyn/clickhouse-driver/pull/407) by [pulina](https://github.com/pulina).
-- ``input_format_null_as_default`` option for UUID produce ``00000000-0000-0000-0000-000000000000`` if set to true. Solves issue [#401](https://github.com/mymarilyn/clickhouse-driver/issues/401).
-- [Tests] Remove MemoryTracker asserting on INSERT statements. Solves issue [#403](https://github.com/mymarilyn/clickhouse-driver/issues/403).
-- Store "progress" and "profile" stats on INSERT statements. Solves issue [#391](https://github.com/mymarilyn/clickhouse-driver/issues/391). Pull request [#392](https://github.com/mymarilyn/clickhouse-driver/pull/392) by [insomnes](https://github.com/insomnes).
-- Add ``send_logs_level=test`` log level support. Solves issue [#383](https://github.com/mymarilyn/clickhouse-driver/issues/383). Pull request [#395](https://github.com/mymarilyn/clickhouse-driver/pull/395) by [the-horhe](https://github.com/the-horhe).
-- ``self`` in ``int128_from_quads``, ``int128_to_quads``, ``int256_from_quads``, ``int256_to_quads``. Solves issue [#400](https://github.com/mymarilyn/clickhouse-driver/issues/400).
+- Date32 start interval changed to 1900-01-01. Solves issue [#409](https://github.com/mymarilyn/datastore-driver/issues/409).
+- Memory leak when clickhouse raise exception on ``BufferedSocketWriter.write_into_stream``. Solves issue [#406](https://github.com/mymarilyn/datastore-driver/issues/406). Pull request [#407](https://github.com/mymarilyn/datastore-driver/pull/407) by [pulina](https://github.com/pulina).
+- ``input_format_null_as_default`` option for UUID produce ``00000000-0000-0000-0000-000000000000`` if set to true. Solves issue [#401](https://github.com/mymarilyn/datastore-driver/issues/401).
+- [Tests] Remove MemoryTracker asserting on INSERT statements. Solves issue [#403](https://github.com/mymarilyn/datastore-driver/issues/403).
+- Store "progress" and "profile" stats on INSERT statements. Solves issue [#391](https://github.com/mymarilyn/datastore-driver/issues/391). Pull request [#392](https://github.com/mymarilyn/datastore-driver/pull/392) by [insomnes](https://github.com/insomnes).
+- Add ``send_logs_level=test`` log level support. Solves issue [#383](https://github.com/mymarilyn/datastore-driver/issues/383). Pull request [#395](https://github.com/mymarilyn/datastore-driver/pull/395) by [the-horhe](https://github.com/the-horhe).
+- ``self`` in ``int128_from_quads``, ``int128_to_quads``, ``int256_from_quads``, ``int256_to_quads``. Solves issue [#400](https://github.com/mymarilyn/datastore-driver/issues/400).
 
 ### Changed
-- Server-side parameters substitution is turned off by default. You can't mix client-side and server-side formatting in one query. Solves issue [#376](https://github.com/mymarilyn/clickhouse-driver/issues/376) and [#410](https://github.com/mymarilyn/clickhouse-driver/issues/410).
+- Server-side parameters substitution is turned off by default. You can't mix client-side and server-side formatting in one query. Solves issue [#376](https://github.com/mymarilyn/datastore-driver/issues/376) and [#410](https://github.com/mymarilyn/datastore-driver/issues/410).
 - Protocol version bumped to 54462.
 
 ## [0.2.6] - 2023-05-02
 ### Added
-- JSON type. Solves issue [#320](https://github.com/mymarilyn/clickhouse-driver/issues/300).
+- JSON type. Solves issue [#320](https://github.com/mymarilyn/datastore-driver/issues/300).
 - On demand client revision downgrading.
 - Server-side query templating.
 - Sparse data type deserialization.
 - TCP keepalive.
-- [NumPy] Optional dataframe column names replacing. Pull request [#361](https://github.com/mymarilyn/clickhouse-driver/pull/361) by [notsovitalik](https://github.com/notsovitalik).
-- Substitution for parameters with time type. Solves issue [#359](https://github.com/mymarilyn/clickhouse-driver/issues/359). Pull request [#360](https://github.com/mymarilyn/clickhouse-driver/pull/360) by [ghazi-git](https://github.com/ghazi-git).
+- [NumPy] Optional dataframe column names replacing. Pull request [#361](https://github.com/mymarilyn/datastore-driver/pull/361) by [notsovitalik](https://github.com/notsovitalik).
+- Substitution for parameters with time type. Solves issue [#359](https://github.com/mymarilyn/datastore-driver/issues/359). Pull request [#360](https://github.com/mymarilyn/datastore-driver/pull/360) by [ghazi-git](https://github.com/ghazi-git).
 
 ### Fixed
-- Client construction with round_robin. Solves issue [#373](https://github.com/mymarilyn/clickhouse-driver/issues/373).
-- Column state prefixes reading and writing. Solves issue [#372](https://github.com/mymarilyn/clickhouse-driver/issues/372).
-- Inserts to a nullable LowCardinality columns. Solves issue [#363](https://github.com/mymarilyn/clickhouse-driver/issues/363). Pull request [#366](https://github.com/mymarilyn/clickhouse-driver/pull/366) by [Dmitry-k42](https://github.com/Dmitry-k42).
-- [NumPy] Avoid unnecessary timezone conversion. Solves issue [#354](https://github.com/mymarilyn/clickhouse-driver/issues/354). Pull request [#355](https://github.com/mymarilyn/clickhouse-driver/pull/355) by [edwinwzhe](https://github.com/edwinwzhe).
+- Client construction with round_robin. Solves issue [#373](https://github.com/mymarilyn/datastore-driver/issues/373).
+- Column state prefixes reading and writing. Solves issue [#372](https://github.com/mymarilyn/datastore-driver/issues/372).
+- Inserts to a nullable LowCardinality columns. Solves issue [#363](https://github.com/mymarilyn/datastore-driver/issues/363). Pull request [#366](https://github.com/mymarilyn/datastore-driver/pull/366) by [Dmitry-k42](https://github.com/Dmitry-k42).
+- [NumPy] Avoid unnecessary timezone conversion. Solves issue [#354](https://github.com/mymarilyn/datastore-driver/issues/354). Pull request [#355](https://github.com/mymarilyn/datastore-driver/pull/355) by [edwinwzhe](https://github.com/edwinwzhe).
 
 ### Changed
 - Protocol version bumped to 54459.
-- [NumPy] Speed-up reading Datetime64. Pull request [#365](https://github.com/mymarilyn/clickhouse-driver/pull/365) by [joelgibson](https://github.com/joelgibson).
+- [NumPy] Speed-up reading Datetime64. Pull request [#365](https://github.com/mymarilyn/datastore-driver/pull/365) by [joelgibson](https://github.com/joelgibson).
 
 ### Removed
 - Python 3.6 support.
 
 ## [0.2.5] - 2022-11-27
 ### Added
-- [NumPy] More readable exception for less columns in frame. Solves issue [#320](https://github.com/mymarilyn/clickhouse-driver/issues/320).
-- Support `server_hostname` via SNI when connecting. Pull request [#325](https://github.com/mymarilyn/clickhouse-driver/pull/325) by [dspangen](https://github.com/dspangen).
-- [NumPy] Bool support. Pull request [#332](https://github.com/mymarilyn/clickhouse-driver/pull/332) by [DylanModesitt](https://github.com/DylanModesitt).
+- [NumPy] More readable exception for less columns in frame. Solves issue [#320](https://github.com/mymarilyn/datastore-driver/issues/320).
+- Support `server_hostname` via SNI when connecting. Pull request [#325](https://github.com/mymarilyn/datastore-driver/pull/325) by [dspangen](https://github.com/dspangen).
+- [NumPy] Bool support. Pull request [#332](https://github.com/mymarilyn/datastore-driver/pull/332) by [DylanModesitt](https://github.com/DylanModesitt).
 - Multiple connections round-robin.
 - Wheels for Python 3.11.
-- Docstring for `substitute_params`. Pull request [#347](https://github.com/mymarilyn/clickhouse-driver/pull/347) by [jasonho-lynx](https://github.com/jasonho-lynx).
+- Docstring for `substitute_params`. Pull request [#347](https://github.com/mymarilyn/datastore-driver/pull/347) by [jasonho-lynx](https://github.com/jasonho-lynx).
 
 ### Fixed
-- Decimal support inside Map type. Pull request [#297](https://github.com/mymarilyn/clickhouse-driver/pull/297) by [zaius](https://github.com/zaius).
-- Preserve empty dataframe shape. Solves issue [#321](https://github.com/mymarilyn/clickhouse-driver/issues/321).
-- Preserve nanoseconds on INSERT for DateTime64. Solves issue [#307](https://github.com/mymarilyn/clickhouse-driver/issues/307).
-- Handle "progress" packets while inserting. Solves issue [#326](https://github.com/mymarilyn/clickhouse-driver/issues/326). Pull request [#327](https://github.com/mymarilyn/clickhouse-driver/pull/327) by [carlosfy](https://github.com/carlosfy).
-- [NumPy] Don't raise exception on INSERT when dataframe columns are superset of table's. Pull request [#340](https://github.com/mymarilyn/clickhouse-driver/pull/340) by [andrewresnikoff](https://github.com/andrewresnikoff).
-- Re-cythonize files for Python 3.11. Pull request [#342](https://github.com/mymarilyn/clickhouse-driver/pull/342) by [asottile-sentry](https://github.com/asottile-sentry).
-- NULL defaults to empty Array instead of one-element array. Solves issue [#339](https://github.com/mymarilyn/clickhouse-driver/issues/339).
+- Decimal support inside Map type. Pull request [#297](https://github.com/mymarilyn/datastore-driver/pull/297) by [zaius](https://github.com/zaius).
+- Preserve empty dataframe shape. Solves issue [#321](https://github.com/mymarilyn/datastore-driver/issues/321).
+- Preserve nanoseconds on INSERT for DateTime64. Solves issue [#307](https://github.com/mymarilyn/datastore-driver/issues/307).
+- Handle "progress" packets while inserting. Solves issue [#326](https://github.com/mymarilyn/datastore-driver/issues/326). Pull request [#327](https://github.com/mymarilyn/datastore-driver/pull/327) by [carlosfy](https://github.com/carlosfy).
+- [NumPy] Don't raise exception on INSERT when dataframe columns are superset of table's. Pull request [#340](https://github.com/mymarilyn/datastore-driver/pull/340) by [andrewresnikoff](https://github.com/andrewresnikoff).
+- Re-cythonize files for Python 3.11. Pull request [#342](https://github.com/mymarilyn/datastore-driver/pull/342) by [asottile-sentry](https://github.com/asottile-sentry).
+- NULL defaults to empty Array instead of one-element array. Solves issue [#339](https://github.com/mymarilyn/datastore-driver/issues/339).
 - Handle "profile event" packets while inserting.
 
 ### Removed
@@ -95,38 +95,38 @@
 
 ## [0.2.4] - 2022-06-13
 ### Added
-- ``dict`` and ``namedtuple`` cursor factories. Solves issue [#290](https://github.com/mymarilyn/clickhouse-driver/issues/290).
-- Geo types: Point, Ring, Polygon, MultiPolygon. Solves issue [#228](https://github.com/mymarilyn/clickhouse-driver/issues/228).
+- ``dict`` and ``namedtuple`` cursor factories. Solves issue [#290](https://github.com/mymarilyn/datastore-driver/issues/290).
+- Geo types: Point, Ring, Polygon, MultiPolygon. Solves issue [#228](https://github.com/mymarilyn/datastore-driver/issues/228).
 - [NumPy] Tuple type.
-- ``input_format_null_as_default`` option for NULL insert into not NULL columns. Solves issue [#312](https://github.com/mymarilyn/clickhouse-driver/issues/312).
-- Chunk size controlling in ``execute_iter`` by parameter ``chunk_size``. Solves issue [#314](https://github.com/mymarilyn/clickhouse-driver/issues/314). Pull request [#315](https://github.com/mymarilyn/clickhouse-driver/pull/315) by [MIracleyin](https://github.com/MIracleyin).
+- ``input_format_null_as_default`` option for NULL insert into not NULL columns. Solves issue [#312](https://github.com/mymarilyn/datastore-driver/issues/312).
+- Chunk size controlling in ``execute_iter`` by parameter ``chunk_size``. Solves issue [#314](https://github.com/mymarilyn/datastore-driver/issues/314). Pull request [#315](https://github.com/mymarilyn/datastore-driver/pull/315) by [MIracleyin](https://github.com/MIracleyin).
 
 ### Fixed
-- Decimal precision check on INSERT. Solves issue [#289](https://github.com/mymarilyn/clickhouse-driver/issues/289). Pull request [#295](https://github.com/mymarilyn/clickhouse-driver/pull/295) by [joelynch](https://github.com/joelynch).
-- Using server's default database instead or ``default``. Solves issue [#309](https://github.com/mymarilyn/clickhouse-driver/issues/309).
-- ``python_requires`` to valid PEP 440 syntax in ``setup.py``. Pull request [#291](https://github.com/mymarilyn/clickhouse-driver/pull/291) by [LSturtew](https://github.com/LSturtew).
+- Decimal precision check on INSERT. Solves issue [#289](https://github.com/mymarilyn/datastore-driver/issues/289). Pull request [#295](https://github.com/mymarilyn/datastore-driver/pull/295) by [joelynch](https://github.com/joelynch).
+- Using server's default database instead or ``default``. Solves issue [#309](https://github.com/mymarilyn/datastore-driver/issues/309).
+- ``python_requires`` to valid PEP 440 syntax in ``setup.py``. Pull request [#291](https://github.com/mymarilyn/datastore-driver/pull/291) by [LSturtew](https://github.com/LSturtew).
 
 ### Changed
 - Protocol version bumped to 54453.
 
 ## [0.2.3] - 2022-02-07
 ### Added
-- `tzlocal`>=4.0 support. Pull request [#263](https://github.com/mymarilyn/clickhouse-driver/pull/263) by [azat](https://github.com/azat).
+- `tzlocal`>=4.0 support. Pull request [#263](https://github.com/mymarilyn/datastore-driver/pull/263) by [azat](https://github.com/azat).
 - `quota_key` support.
 - Wheels for Python 3.10.
-- Bool type. Pull request [#279](https://github.com/mymarilyn/clickhouse-driver/pull/279) by [adrian17](https://github.com/adrian17).
-- Nested type with `flatten_nested=0`. Pull request [#285](https://github.com/mymarilyn/clickhouse-driver/pull/285) by [spff](https://github.com/spff).
+- Bool type. Pull request [#279](https://github.com/mymarilyn/datastore-driver/pull/279) by [adrian17](https://github.com/adrian17).
+- Nested type with `flatten_nested=0`. Pull request [#285](https://github.com/mymarilyn/datastore-driver/pull/285) by [spff](https://github.com/spff).
 
 ### Fixed
-- Handle partially consumed query. Solves issue [#117](https://github.com/mymarilyn/clickhouse-driver/issues/117).
-- Fallback to generic columns when NumPy support is not implemented for column type. Solves issue [#254](https://github.com/mymarilyn/clickhouse-driver/issues/254).
-- Broken ZSTD decompression. Solves issue [#269](https://github.com/mymarilyn/clickhouse-driver/issues/269).
-- External tables passing with NumPy. Solves issue [#267](https://github.com/mymarilyn/clickhouse-driver/issues/267).
-- Consider tzinfo for datetime parameters substitution. Solves issue [#268](https://github.com/mymarilyn/clickhouse-driver/issues/268).
-- Do not use NumPy columns inside generic columns. Solves issue [#272](https://github.com/mymarilyn/clickhouse-driver/issues/272).
-- Decimal128 and Decimal256 types_check. Solves issue [#274](https://github.com/mymarilyn/clickhouse-driver/issues/274).
-- Insertion using `execute` in DB API. Solves issue [#179](https://github.com/mymarilyn/clickhouse-driver/issues/179). Pull request [#276](https://github.com/mymarilyn/clickhouse-driver/pull/276) by [nnseva](https://github.com/nnseva).
-- Variables cannot be declared with `cpdef` in Cython 3. Pull request [#281](https://github.com/mymarilyn/clickhouse-driver/pull/281) by [ym](https://github.com/ym).
+- Handle partially consumed query. Solves issue [#117](https://github.com/mymarilyn/datastore-driver/issues/117).
+- Fallback to generic columns when NumPy support is not implemented for column type. Solves issue [#254](https://github.com/mymarilyn/datastore-driver/issues/254).
+- Broken ZSTD decompression. Solves issue [#269](https://github.com/mymarilyn/datastore-driver/issues/269).
+- External tables passing with NumPy. Solves issue [#267](https://github.com/mymarilyn/datastore-driver/issues/267).
+- Consider tzinfo for datetime parameters substitution. Solves issue [#268](https://github.com/mymarilyn/datastore-driver/issues/268).
+- Do not use NumPy columns inside generic columns. Solves issue [#272](https://github.com/mymarilyn/datastore-driver/issues/272).
+- Decimal128 and Decimal256 types_check. Solves issue [#274](https://github.com/mymarilyn/datastore-driver/issues/274).
+- Insertion using `execute` in DB API. Solves issue [#179](https://github.com/mymarilyn/datastore-driver/issues/179). Pull request [#276](https://github.com/mymarilyn/datastore-driver/pull/276) by [nnseva](https://github.com/nnseva).
+- Variables cannot be declared with `cpdef` in Cython 3. Pull request [#281](https://github.com/mymarilyn/datastore-driver/pull/281) by [ym](https://github.com/ym).
 
 ### Changed
 - Switch from nose test runner to pytest.
@@ -134,21 +134,21 @@
 
 ## [0.2.2] - 2021-09-24
 ### Added
-- DateTime64 extended range. Pull request [#222](https://github.com/mymarilyn/clickhouse-driver/pull/222) by [0x4ec7](https://github.com/0x4ec7).
-- Support for using `Client` as context manager closing connection on exit. Solves issue [#237](https://github.com/mymarilyn/clickhouse-driver/issues/237). Pull request [#206](https://github.com/mymarilyn/clickhouse-driver/pull/238) by [wlhjason](https://github.com/wlhjason).
-- OpenTelemetry support. Solves issue [#230](https://github.com/mymarilyn/clickhouse-driver/issues/230).
+- DateTime64 extended range. Pull request [#222](https://github.com/mymarilyn/datastore-driver/pull/222) by [0x4ec7](https://github.com/0x4ec7).
+- Support for using `Client` as context manager closing connection on exit. Solves issue [#237](https://github.com/mymarilyn/datastore-driver/issues/237). Pull request [#206](https://github.com/mymarilyn/datastore-driver/pull/238) by [wlhjason](https://github.com/wlhjason).
+- OpenTelemetry support. Solves issue [#230](https://github.com/mymarilyn/datastore-driver/issues/230).
 - `tzlocal`>=3.0 support.
 - Date32 type.
 - [NumPy] Nullable(T) support.
 
 ### Fixed
 - Boxing on DataFrames INSERT.
-- Empty external tables sending. Solves issue [#240](https://github.com/mymarilyn/clickhouse-driver/issues/240).
-- Create error message before disconnect. Pull request [#247](https://github.com/mymarilyn/clickhouse-driver/pull/247) by [NikiforovG](https://github.com/NikiforovG).
-- Writing explicit NumPy `NaN` values. Solves issue [#249](https://github.com/mymarilyn/clickhouse-driver/issues/249).
-- UInt128 INSERTing. Solves issue [#251](https://github.com/mymarilyn/clickhouse-driver/issues/251).
-- Large DataFrames chunking. Solves issue [#243](https://github.com/mymarilyn/clickhouse-driver/issues/243).
-- Allow arbitrary DataFrame columns order on INSERT. Solves issue [#245](https://github.com/mymarilyn/clickhouse-driver/issues/245).
+- Empty external tables sending. Solves issue [#240](https://github.com/mymarilyn/datastore-driver/issues/240).
+- Create error message before disconnect. Pull request [#247](https://github.com/mymarilyn/datastore-driver/pull/247) by [NikiforovG](https://github.com/NikiforovG).
+- Writing explicit NumPy `NaN` values. Solves issue [#249](https://github.com/mymarilyn/datastore-driver/issues/249).
+- UInt128 INSERTing. Solves issue [#251](https://github.com/mymarilyn/datastore-driver/issues/251).
+- Large DataFrames chunking. Solves issue [#243](https://github.com/mymarilyn/datastore-driver/issues/243).
+- Allow arbitrary DataFrame columns order on INSERT. Solves issue [#245](https://github.com/mymarilyn/datastore-driver/issues/245).
 
 ### Changed
 - Protocol version bumped to 54442.
@@ -159,22 +159,22 @@
 
 ## [0.2.1] - 2021-06-02
 ### Added
-- Linux wheels for AArch64. Pull request [#197](https://github.com/mymarilyn/clickhouse-driver/pull/197) by [odidev](https://github.com/odidev).
+- Linux wheels for AArch64. Pull request [#197](https://github.com/mymarilyn/datastore-driver/pull/197) by [odidev](https://github.com/odidev).
 - [U]Int28/256 types.
 - Decimal256 type.
 - Code coverage for cython code.
 - Map type.
-- Support for private key/certificate file. Pull request [#219](https://github.com/mymarilyn/clickhouse-driver/pull/219) by [alexole](https://github.com/alexole).
+- Support for private key/certificate file. Pull request [#219](https://github.com/mymarilyn/datastore-driver/pull/219) by [alexole](https://github.com/alexole).
 
 ### Fixed
-- Empty Array(Tuple(T)) writing. Solves issue [#177](https://github.com/mymarilyn/clickhouse-driver/issues/177).
-- Preserve Decimal precision on INSERT. Solves issue [#192](https://github.com/mymarilyn/clickhouse-driver/issues/192).
-- Remove closed cursors from connection. Solves issue [#194](https://github.com/mymarilyn/clickhouse-driver/issues/194).
+- Empty Array(Tuple(T)) writing. Solves issue [#177](https://github.com/mymarilyn/datastore-driver/issues/177).
+- Preserve Decimal precision on INSERT. Solves issue [#192](https://github.com/mymarilyn/datastore-driver/issues/192).
+- Remove closed cursors from connection. Solves issue [#194](https://github.com/mymarilyn/datastore-driver/issues/194).
 - DB API connect with default params.
-- Fix log blocks handling. Solves issue [#203](https://github.com/mymarilyn/clickhouse-driver/issues/203).
-- Multidimensional Array decoding. Solves issue [#204](https://github.com/mymarilyn/clickhouse-driver/issues/204). Pull request [#206](https://github.com/mymarilyn/clickhouse-driver/pull/206) by [smagellan](https://github.com/smagellan).
-- Use last database after reconnect. Solves issue [#205](https://github.com/mymarilyn/clickhouse-driver/issues/205).
-- Decimal(N, 1) handling. Pull request [#210](https://github.com/mymarilyn/clickhouse-driver/pull/210) by [raw0w](https://github.com/raw0w).
+- Fix log blocks handling. Solves issue [#203](https://github.com/mymarilyn/datastore-driver/issues/203).
+- Multidimensional Array decoding. Solves issue [#204](https://github.com/mymarilyn/datastore-driver/issues/204). Pull request [#206](https://github.com/mymarilyn/datastore-driver/pull/206) by [smagellan](https://github.com/smagellan).
+- Use last database after reconnect. Solves issue [#205](https://github.com/mymarilyn/datastore-driver/issues/205).
+- Decimal(N, 1) handling. Pull request [#210](https://github.com/mymarilyn/datastore-driver/pull/210) by [raw0w](https://github.com/raw0w).
 
 ### Changed
 - Decimal128 performance increased (up to 25% compared to 0.2.0 release).
@@ -184,18 +184,18 @@
 
 ## [0.2.0] - 2020-12-14
 ### Added
-- NumPy reading/writing for columns: Float32/64, [U]Int8/16/32/64, Date/DateTime(‘timezone’)/DateTime64(‘timezone’), String/FixedString(N), LowCardinality(T). Merge [Arturus's](https://github.com/Arturus/clickhouse-driver) fork.
+- NumPy reading/writing for columns: Float32/64, [U]Int8/16/32/64, Date/DateTime(‘timezone’)/DateTime64(‘timezone’), String/FixedString(N), LowCardinality(T). Merge [Arturus's](https://github.com/Arturus/datastore-driver) fork.
 - Pandas DataFrame reading/writing.
 - Ability to mark all settings as important to fail on unknown settings on sever side.
-- SSL SNI support. Solves issue [#172](https://github.com/mymarilyn/clickhouse-driver/issues/172).
+- SSL SNI support. Solves issue [#172](https://github.com/mymarilyn/datastore-driver/issues/172).
 - Wheels for Python 3.9 and PyPy.
-- Remember last successful host on connection. Solves issue [#168](https://github.com/mymarilyn/clickhouse-driver/issues/168).
+- Remember last successful host on connection. Solves issue [#168](https://github.com/mymarilyn/datastore-driver/issues/168).
 
 ### Fixed
 - Server logs displaying on INSERT.
-- Make exceptions picklable. Pull request [#169](https://github.com/mymarilyn/clickhouse-driver/pull/169) by [azat](https://github.com/azat).
-- Enum type deserializing when it wrapped in SimpleAggregateFunction. Pull request [#170](https://github.com/mymarilyn/clickhouse-driver/pull/170) by [flyAwayGG](https://github.com/flyAwayGG).
-- Pin major `tzlocal` version. Solves issue [#166](https://github.com/mymarilyn/clickhouse-driver/issues/166).
+- Make exceptions picklable. Pull request [#169](https://github.com/mymarilyn/datastore-driver/pull/169) by [azat](https://github.com/azat).
+- Enum type deserializing when it wrapped in SimpleAggregateFunction. Pull request [#170](https://github.com/mymarilyn/datastore-driver/pull/170) by [flyAwayGG](https://github.com/flyAwayGG).
+- Pin major `tzlocal` version. Solves issue [#166](https://github.com/mymarilyn/datastore-driver/issues/166).
 
 ### Changed
 - String and DateTime columns writing optimization.
@@ -205,27 +205,27 @@
 
 ## [0.1.5] - 2020-09-19
 ### Added
-- Do not require settings declaration if server support setting-as-string. Pull request [#142](https://github.com/mymarilyn/clickhouse-driver/pull/142) by [azat](https://github.com/azat).
-- `host_name` in logs. Pull request [#144](https://github.com/mymarilyn/clickhouse-driver/pull/144) by [azat](https://github.com/azat).
-- Cursor attribute `columns_with_types` to DB API. Issue [#149](https://github.com/mymarilyn/clickhouse-driver/issues/149).
-- Cursor method `set_query_id` to DB API. Issue [#152](https://github.com/mymarilyn/clickhouse-driver/issues/152).
+- Do not require settings declaration if server support setting-as-string. Pull request [#142](https://github.com/mymarilyn/datastore-driver/pull/142) by [azat](https://github.com/azat).
+- `host_name` in logs. Pull request [#144](https://github.com/mymarilyn/datastore-driver/pull/144) by [azat](https://github.com/azat).
+- Cursor attribute `columns_with_types` to DB API. Issue [#149](https://github.com/mymarilyn/datastore-driver/issues/149).
+- Cursor method `set_query_id` to DB API. Issue [#152](https://github.com/mymarilyn/datastore-driver/issues/152).
 
 ### Fixed
 - Connection error messages formatting.
-- `Client.from_url` credentials unquoting. Issue [#146](https://github.com/mymarilyn/clickhouse-driver/issues/146).
-- Empty nested array handling. Pull request [#161](https://github.com/mymarilyn/clickhouse-driver/pull/161) by [dourvaris](https://github.com/dourvaris).
-- `read_varint` overflow. Issue [#163](https://github.com/mymarilyn/clickhouse-driver/issues/163).
+- `Client.from_url` credentials unquoting. Issue [#146](https://github.com/mymarilyn/datastore-driver/issues/146).
+- Empty nested array handling. Pull request [#161](https://github.com/mymarilyn/datastore-driver/pull/161) by [dourvaris](https://github.com/dourvaris).
+- `read_varint` overflow. Issue [#163](https://github.com/mymarilyn/datastore-driver/issues/163).
 - Malformed reads/writes in `BufferedReader`. This addresses [CVE-2020-26759](https://nvd.nist.gov/vuln/detail/CVE-2020-26759).
 
 ### Changed
-- Use deque for ~4x speedup when reading Array columns. Pull request [#164](https://github.com/mymarilyn/clickhouse-driver/pull/164) by [dourvaris](https://github.com/dourvaris).
+- Use deque for ~4x speedup when reading Array columns. Pull request [#164](https://github.com/mymarilyn/datastore-driver/pull/164) by [dourvaris](https://github.com/dourvaris).
 
 ## [0.1.4] - 2020-06-13
 ### Added
 - Tuple type.
 - Custom String column encoding.
-- Settings update to v20.4.1.2742 server version. Pull request [#133](https://github.com/mymarilyn/clickhouse-driver/pull/133) by [azat](https://github.com/azat).
-- Settings update to v20.5.1.3657 server version. Pull request [#141](https://github.com/mymarilyn/clickhouse-driver/pull/141) by [azat](https://github.com/azat).
+- Settings update to v20.4.1.2742 server version. Pull request [#133](https://github.com/mymarilyn/datastore-driver/pull/133) by [azat](https://github.com/azat).
+- Settings update to v20.5.1.3657 server version. Pull request [#141](https://github.com/mymarilyn/datastore-driver/pull/141) by [azat](https://github.com/azat).
 - Unsupported server versions to documentation.
 - Performance section to documentation.
 - Python 3.9 in Travis CI build matrix.
@@ -245,10 +245,10 @@
 ### Added
 - Python DB API 2.0.
 - Multiple hosts support on connection errors.
-- Insert columnar data support. Pull request [#122](https://github.com/mymarilyn/clickhouse-driver/pull/122) by [Anexen](https://github.com/Anexen).
+- Insert columnar data support. Pull request [#122](https://github.com/mymarilyn/datastore-driver/pull/122) by [Anexen](https://github.com/Anexen).
 - Wheels for Python 3.8.
 - DateTime64 type.
-- Settings update to v20.2.1.2201 server version. Pull request [#123](https://github.com/mymarilyn/clickhouse-driver/pull/123) by [azat](https://github.com/azat).
+- Settings update to v20.2.1.2201 server version. Pull request [#123](https://github.com/mymarilyn/datastore-driver/pull/123) by [azat](https://github.com/azat).
 
 ### Fixed
 - `Client.from_url` settings detection.
@@ -257,18 +257,18 @@
 
 ### Changed
 - Protocol version bumped to 54421.
-- Increased speed (up to 20-30% compared to 0.1.2 release) on heavy `SELECT` and `INSERT` queries. Pull request [#122](https://github.com/mymarilyn/clickhouse-driver/pull/122) by [Anexen](https://github.com/Anexen).
-- Memory consumption decreased (up to 20% compared to 0.1.2 release). Pull request [#122](https://github.com/mymarilyn/clickhouse-driver/pull/122) by [Anexen](https://github.com/Anexen).
+- Increased speed (up to 20-30% compared to 0.1.2 release) on heavy `SELECT` and `INSERT` queries. Pull request [#122](https://github.com/mymarilyn/datastore-driver/pull/122) by [Anexen](https://github.com/Anexen).
+- Memory consumption decreased (up to 20% compared to 0.1.2 release). Pull request [#122](https://github.com/mymarilyn/datastore-driver/pull/122) by [Anexen](https://github.com/Anexen).
 
 ## [0.1.2] - 2019-10-18
 ### Added
-- Settings update to 19.16.1 server version. Pull request [#111](https://github.com/mymarilyn/clickhouse-driver/pull/111) by [azat](https://github.com/azat).
+- Settings update to 19.16.1 server version. Pull request [#111](https://github.com/mymarilyn/datastore-driver/pull/111) by [azat](https://github.com/azat).
 - Python 3.8 in Travis CI build matrix.
 - Returning inserted rows count on `INSERT` queries with data. Returning rows count from `INSERT FROM SELECT` is not supported.
 
 ### Fixed
-- Exposing `columnar` parameter to `execute_with_progress`. Pull request [#108](https://github.com/mymarilyn/clickhouse-driver/pull/108) by [igorbb](https://github.com/igorbb).
-- LowCardinality tests. Pull request [#112](https://github.com/mymarilyn/clickhouse-driver/pull/112) by [azat](https://github.com/azat).
+- Exposing `columnar` parameter to `execute_with_progress`. Pull request [#108](https://github.com/mymarilyn/datastore-driver/pull/108) by [igorbb](https://github.com/igorbb).
+- LowCardinality tests. Pull request [#112](https://github.com/mymarilyn/datastore-driver/pull/112) by [azat](https://github.com/azat).
 
 ### Changed
 - Increased speed (up to 5 times compared to 0.1.1 release) of `INSERT` queries.
@@ -280,11 +280,11 @@
 
 ### Fixed
 - If source column was timezone-aware values from DateTime column are returned with timezone now.
-- Handling zero bytes in the middle of FixedString column. Issue [#104](https://github.com/mymarilyn/clickhouse-driver/issues/104).
+- Handling zero bytes in the middle of FixedString column. Issue [#104](https://github.com/mymarilyn/datastore-driver/issues/104).
 
 ## [0.1.0] - 2019-08-07
 ### Added
-- SimpleAggregateFunction type. Pull request [#95](https://github.com/mymarilyn/clickhouse-driver/pull/95) by [azat](https://github.com/azat).
+- SimpleAggregateFunction type. Pull request [#95](https://github.com/mymarilyn/datastore-driver/pull/95) by [azat](https://github.com/azat).
 
 ### Changed
 - Increased speed (5-6 times compared to 0.0.20 release) of `SELECT` queries with large amount of strings.
@@ -292,46 +292,46 @@
 
 ### Fixed
 - Elapsed time calculation on INSERT.
-- Dependencies environment markers for poetry in `setup.py`. Pull request [#96](https://github.com/mymarilyn/clickhouse-driver/pull/96) by [nitoqq](https://github.com/nitoqq).
+- Dependencies environment markers for poetry in `setup.py`. Pull request [#96](https://github.com/mymarilyn/datastore-driver/pull/96) by [nitoqq](https://github.com/nitoqq).
 
 ## [0.0.20] - 2019-06-02
 ### Added
 - LowCardinality(T) type.
 - Access for processed rows, bytes and elapsed time of the last executed query.
-- Allow to insert `datetime` into Date column. Pull request [#75](https://github.com/mymarilyn/clickhouse-driver/pull/75) by [gle4er](https://github.com/gle4er).
-- 'max_partitions_per_insert_block' setting. Pull request [#85](https://github.com/mymarilyn/clickhouse-driver/pull/85) by [mhsekhavat](https://github.com/mhsekhavat).
+- Allow to insert `datetime` into Date column. Pull request [#75](https://github.com/mymarilyn/datastore-driver/pull/75) by [gle4er](https://github.com/gle4er).
+- 'max_partitions_per_insert_block' setting. Pull request [#85](https://github.com/mymarilyn/datastore-driver/pull/85) by [mhsekhavat](https://github.com/mhsekhavat).
 
 ### Fixed
-- Fallback for user name if it's not defined. Pull request [#87](https://github.com/mymarilyn/clickhouse-driver/pull/87) by [wawaka](https://github.com/wawaka).
+- Fallback for user name if it's not defined. Pull request [#87](https://github.com/mymarilyn/datastore-driver/pull/87) by [wawaka](https://github.com/wawaka).
 
 ## [0.0.19] - 2019-03-31
 ### Added
-- IPv4/IPv6 types. Pull request [#73](https://github.com/mymarilyn/clickhouse-driver/pull/73) by [AchilleAsh](https://github.com/AchilleAsh).
+- IPv4/IPv6 types. Pull request [#73](https://github.com/mymarilyn/datastore-driver/pull/73) by [AchilleAsh](https://github.com/AchilleAsh).
 
 ### Fixed
 - String enums escaping.
 
 ## [0.0.18] - 2019-02-19
 ### Fixed
-- Strings mishandling read from buffer. Pull request [#72](https://github.com/mymarilyn/clickhouse-driver/pull/72) by [mitsuhiko](https://github.com/mitsuhiko).
+- Strings mishandling read from buffer. Pull request [#72](https://github.com/mymarilyn/datastore-driver/pull/72) by [mitsuhiko](https://github.com/mitsuhiko).
 
 ## [0.0.17] - 2019-01-09
 ### Added
 - Server logs displaying.
-- Documentation on Read the Docs: https://clickhouse-driver.readthedocs.io
+- Documentation on Read the Docs: https://datastore-driver.readthedocs.io
 
 ### Changed
 - Protocol version bumped to 54406.
 
 ### Fixed
 - INSERT generators support as data parameter.
-- INSERT null value on ByteString column. Pull request [#65](https://github.com/mymarilyn/clickhouse-driver/pull/65) by [vivienm](https://github.com/vivienm).
+- INSERT null value on ByteString column. Pull request [#65](https://github.com/mymarilyn/datastore-driver/pull/65) by [vivienm](https://github.com/vivienm).
 - Integer types support in FloatColumn.
-- Handle quotes and equation signs in Enum options. Pull request [#67](https://github.com/mymarilyn/clickhouse-driver/pull/67) by [sochi](https://github.com/sochi).
+- Handle quotes and equation signs in Enum options. Pull request [#67](https://github.com/mymarilyn/datastore-driver/pull/67) by [sochi](https://github.com/sochi).
 
 ## [0.0.16] - 2018-10-09
 ### Added
-- Option to access profile info about the last executed query. Pull request [#57](https://github.com/mymarilyn/clickhouse-driver/pull/57) by [vanzi](https://github.com/vanzi).
+- Option to access profile info about the last executed query. Pull request [#57](https://github.com/mymarilyn/datastore-driver/pull/57) by [vanzi](https://github.com/vanzi).
 - Decimal type.
 - Settings update to 18.14.2 server version.
 
@@ -352,24 +352,24 @@
 
 ## [0.0.13] - 2018-07-26
 ### Fixed
-- Revert pull request [#45](https://github.com/mymarilyn/clickhouse-driver/pull/45) by [shotInLeg](https://github.com/shotInLeg) due to `INSERT FROM SELECT` breaking.
+- Revert pull request [#45](https://github.com/mymarilyn/datastore-driver/pull/45) by [shotInLeg](https://github.com/shotInLeg) due to `INSERT FROM SELECT` breaking.
 
 ## [0.0.12] - 2018-07-25
 ### Added
-- Allow for access of final progress stats. Pull request [#41](https://github.com/mymarilyn/clickhouse-driver/pull/41) by [alex-hofsteede](https://github.com/alex-hofsteede).
-- Supplying raw integers in DateTime columns. Pull request [#42](https://github.com/mymarilyn/clickhouse-driver/pull/42) by [wawaka](https://github.com/wawaka).
+- Allow for access of final progress stats. Pull request [#41](https://github.com/mymarilyn/datastore-driver/pull/41) by [alex-hofsteede](https://github.com/alex-hofsteede).
+- Supplying raw integers in DateTime columns. Pull request [#42](https://github.com/mymarilyn/datastore-driver/pull/42) by [wawaka](https://github.com/wawaka).
 
 ### Fixed
 - Pip install in editable mode.
 
 ### Changed
-- Raise ValueError instead of timeout for INSERT queries without params. Pull request [#45](https://github.com/mymarilyn/clickhouse-driver/pull/45) by [shotInLeg](https://github.com/shotInLeg).
+- Raise ValueError instead of timeout for INSERT queries without params. Pull request [#45](https://github.com/mymarilyn/datastore-driver/pull/45) by [shotInLeg](https://github.com/shotInLeg).
 
 ## [0.0.11] - 2018-06-03
 ### Added
 - Timezone support in DateTime type.
 - Python 3.7 and PyPy in Travis CI build matrix.
-- Direct bytes support in FixedString. Pull request [#26](https://github.com/mymarilyn/clickhouse-driver/pull/26) by [lidalei](https://github.com/lidalei).
+- Direct bytes support in FixedString. Pull request [#26](https://github.com/mymarilyn/datastore-driver/pull/26) by [lidalei](https://github.com/lidalei).
 
 ### Removed
 - Python 3.3 support.
@@ -381,23 +381,23 @@
 - Travis CI build matrix.
 
 ### Fixed
-- Possible IndexError in packet types string representation. Pull request [#28](https://github.com/mymarilyn/clickhouse-driver/pull/28) by [WouldYouKindly](https://github.com/WouldYouKindly).
-- Do not use timezone in Date columns. Issue [#29](https://github.com/mymarilyn/clickhouse-driver/issues/29).
-- Approximate rows to read calculation in `execute_with_progress`. Pull request [#30](https://github.com/mymarilyn/clickhouse-driver/pull/30) by [b1naryth1ef](https://github.com/b1naryth1ef).
+- Possible IndexError in packet types string representation. Pull request [#28](https://github.com/mymarilyn/datastore-driver/pull/28) by [WouldYouKindly](https://github.com/WouldYouKindly).
+- Do not use timezone in Date columns. Issue [#29](https://github.com/mymarilyn/datastore-driver/issues/29).
+- Approximate rows to read calculation in `execute_with_progress`. Pull request [#30](https://github.com/mymarilyn/datastore-driver/pull/30) by [b1naryth1ef](https://github.com/b1naryth1ef).
 
 ### Changed
-- List and Tuple types rendering in parameters substitution. Pull request [#27](https://github.com/mymarilyn/clickhouse-driver/pull/27) by [silentsokolov](https://github.com/silentsokolov).
+- List and Tuple types rendering in parameters substitution. Pull request [#27](https://github.com/mymarilyn/datastore-driver/pull/27) by [silentsokolov](https://github.com/silentsokolov).
 
 ## [0.0.9] - 2018-01-17
 ### Added
-- Interval type. Pull request [#16](https://github.com/mymarilyn/clickhouse-driver/pull/16) by [kszucs](https://github.com/kszucs).
+- Interval type. Pull request [#16](https://github.com/mymarilyn/datastore-driver/pull/16) by [kszucs](https://github.com/kszucs).
 
 ### Fixed
 - Raise EOFError when no data is read in `_read_one` in Python 3.
 - SSL file descriptors closing in Python 2.7.
 
 ### Changed
-- Log level for normal operations raised to DEBUG. Pull request [#17](https://github.com/mymarilyn/clickhouse-driver/pull/17) by [kmatt](https://github.com/kmatt).
+- Log level for normal operations raised to DEBUG. Pull request [#17](https://github.com/mymarilyn/datastore-driver/pull/17) by [kmatt](https://github.com/kmatt).
 
 ### Removed
 - Drop Python 3.2 support due to lz4 issues.
@@ -411,7 +411,7 @@
 - Columnar result returning from multiple blocks. Columns must be concatenated.
 - Settings logger was root.
 - Reading/writing Array(String) NotImplementedError raise.
-- IPv6 support issue [#12](https://github.com/mymarilyn/clickhouse-driver/issues/12).
+- IPv6 support issue [#12](https://github.com/mymarilyn/datastore-driver/issues/12).
 
 ## [0.0.7] - 2017-10-12
 ### Added
@@ -420,7 +420,7 @@
 - Force check clickhouse-cityhash is installed if compression is used.
 - `Client` can be directly imported from package.
 - `insert_block_size` parameter - maximum rows in block (default is 1048576).
-- Columnar result returning (`columnar=True`). Pull request [#11](https://github.com/mymarilyn/clickhouse-driver/pull/11) by [kszucs](https://github.com/kszucs).
+- Columnar result returning (`columnar=True`). Pull request [#11](https://github.com/mymarilyn/datastore-driver/pull/11) by [kszucs](https://github.com/kszucs).
 - Tunable types check (`types_check=True`). Off by default.
 
 ### Changed
@@ -432,7 +432,7 @@
 - Version detection in setup.py.
 - Error handling on socket.shutdown.
 - Install `enum34` only if required.
-- `clickhouse-cityhash` import issue [#10](https://github.com/mymarilyn/clickhouse-driver/issues/10).
+- `clickhouse-cityhash` import issue [#10](https://github.com/mymarilyn/datastore-driver/issues/10).
 
 ### Removed
 - QuickLZ support
@@ -489,38 +489,38 @@
 - Date/DateTime types.
 - String types.
 
-[Unreleased]: https://github.com/mymarilyn/clickhouse-driver/compare/0.2.9...HEAD
-[0.2.9]: https://github.com/mymarilyn/clickhouse-driver/compare/0.2.8...0.2.9
-[0.2.8]: https://github.com/mymarilyn/clickhouse-driver/compare/0.2.7...0.2.8
-[0.2.7]: https://github.com/mymarilyn/clickhouse-driver/compare/0.2.6...0.2.7
-[0.2.6]: https://github.com/mymarilyn/clickhouse-driver/compare/0.2.5...0.2.6
-[0.2.5]: https://github.com/mymarilyn/clickhouse-driver/compare/0.2.4...0.2.5
-[0.2.4]: https://github.com/mymarilyn/clickhouse-driver/compare/0.2.3...0.2.4
-[0.2.3]: https://github.com/mymarilyn/clickhouse-driver/compare/0.2.2...0.2.3
-[0.2.2]: https://github.com/mymarilyn/clickhouse-driver/compare/0.2.1...0.2.2
-[0.2.1]: https://github.com/mymarilyn/clickhouse-driver/compare/0.2.0...0.2.1
-[0.2.0]: https://github.com/mymarilyn/clickhouse-driver/compare/0.1.5...0.2.0
-[0.1.5]: https://github.com/mymarilyn/clickhouse-driver/compare/0.1.4...0.1.5
-[0.1.4]: https://github.com/mymarilyn/clickhouse-driver/compare/0.1.3...0.1.4
-[0.1.3]: https://github.com/mymarilyn/clickhouse-driver/compare/0.1.2...0.1.3
-[0.1.2]: https://github.com/mymarilyn/clickhouse-driver/compare/0.1.1...0.1.2
-[0.1.1]: https://github.com/mymarilyn/clickhouse-driver/compare/0.1.0...0.1.1
-[0.1.0]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.20...0.1.0
-[0.0.20]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.19...0.0.20
-[0.0.19]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.18...0.0.19
-[0.0.18]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.17...0.0.18
-[0.0.17]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.16...0.0.17
-[0.0.16]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.15...0.0.16
-[0.0.15]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.14...0.0.15
-[0.0.14]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.13...0.0.14
-[0.0.13]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.12...0.0.13
-[0.0.12]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.11...0.0.12
-[0.0.11]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.10...0.0.11
-[0.0.10]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.9...0.0.10
-[0.0.9]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.8...0.0.9
-[0.0.8]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.7...0.0.8
-[0.0.7]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.6...0.0.7
-[0.0.6]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.5...0.0.6
-[0.0.5]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.4...0.0.5
-[0.0.4]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.3...0.0.4
-[0.0.3]: https://github.com/mymarilyn/clickhouse-driver/compare/0.0.2...0.0.3
+[Unreleased]: https://github.com/mymarilyn/datastore-driver/compare/0.2.9...HEAD
+[0.2.9]: https://github.com/mymarilyn/datastore-driver/compare/0.2.8...0.2.9
+[0.2.8]: https://github.com/mymarilyn/datastore-driver/compare/0.2.7...0.2.8
+[0.2.7]: https://github.com/mymarilyn/datastore-driver/compare/0.2.6...0.2.7
+[0.2.6]: https://github.com/mymarilyn/datastore-driver/compare/0.2.5...0.2.6
+[0.2.5]: https://github.com/mymarilyn/datastore-driver/compare/0.2.4...0.2.5
+[0.2.4]: https://github.com/mymarilyn/datastore-driver/compare/0.2.3...0.2.4
+[0.2.3]: https://github.com/mymarilyn/datastore-driver/compare/0.2.2...0.2.3
+[0.2.2]: https://github.com/mymarilyn/datastore-driver/compare/0.2.1...0.2.2
+[0.2.1]: https://github.com/mymarilyn/datastore-driver/compare/0.2.0...0.2.1
+[0.2.0]: https://github.com/mymarilyn/datastore-driver/compare/0.1.5...0.2.0
+[0.1.5]: https://github.com/mymarilyn/datastore-driver/compare/0.1.4...0.1.5
+[0.1.4]: https://github.com/mymarilyn/datastore-driver/compare/0.1.3...0.1.4
+[0.1.3]: https://github.com/mymarilyn/datastore-driver/compare/0.1.2...0.1.3
+[0.1.2]: https://github.com/mymarilyn/datastore-driver/compare/0.1.1...0.1.2
+[0.1.1]: https://github.com/mymarilyn/datastore-driver/compare/0.1.0...0.1.1
+[0.1.0]: https://github.com/mymarilyn/datastore-driver/compare/0.0.20...0.1.0
+[0.0.20]: https://github.com/mymarilyn/datastore-driver/compare/0.0.19...0.0.20
+[0.0.19]: https://github.com/mymarilyn/datastore-driver/compare/0.0.18...0.0.19
+[0.0.18]: https://github.com/mymarilyn/datastore-driver/compare/0.0.17...0.0.18
+[0.0.17]: https://github.com/mymarilyn/datastore-driver/compare/0.0.16...0.0.17
+[0.0.16]: https://github.com/mymarilyn/datastore-driver/compare/0.0.15...0.0.16
+[0.0.15]: https://github.com/mymarilyn/datastore-driver/compare/0.0.14...0.0.15
+[0.0.14]: https://github.com/mymarilyn/datastore-driver/compare/0.0.13...0.0.14
+[0.0.13]: https://github.com/mymarilyn/datastore-driver/compare/0.0.12...0.0.13
+[0.0.12]: https://github.com/mymarilyn/datastore-driver/compare/0.0.11...0.0.12
+[0.0.11]: https://github.com/mymarilyn/datastore-driver/compare/0.0.10...0.0.11
+[0.0.10]: https://github.com/mymarilyn/datastore-driver/compare/0.0.9...0.0.10
+[0.0.9]: https://github.com/mymarilyn/datastore-driver/compare/0.0.8...0.0.9
+[0.0.8]: https://github.com/mymarilyn/datastore-driver/compare/0.0.7...0.0.8
+[0.0.7]: https://github.com/mymarilyn/datastore-driver/compare/0.0.6...0.0.7
+[0.0.6]: https://github.com/mymarilyn/datastore-driver/compare/0.0.5...0.0.6
+[0.0.5]: https://github.com/mymarilyn/datastore-driver/compare/0.0.4...0.0.5
+[0.0.4]: https://github.com/mymarilyn/datastore-driver/compare/0.0.3...0.0.4
+[0.0.3]: https://github.com/mymarilyn/datastore-driver/compare/0.0.2...0.0.3

@@ -1,4 +1,4 @@
-from clickhouse_driver.columns.util import get_inner_spec
+from datastore_driver.columns.util import get_inner_spec
 from tests.testcase import BaseTestCase
 
 
