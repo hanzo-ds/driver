@@ -19,14 +19,14 @@ from .util.helpers import column_chunks, chunks, parse_url
 
 class Client(object):
     """
-    Client for communication with the ClickHouse server.
+    Client for communication with the Datastore server.
     Single connection is established per each connected instance of the client.
 
     :param settings: Dictionary of settings that passed to every query (except
                      for the client settings, see below). Defaults to ``None``
                      (no additional settings). See all available settings in
-                     `ClickHouse docs
-                     <https://clickhouse.com/docs/en/operations/settings/settings/>`_.
+                     `Datastore docs
+                     <https://docs.hanzo.ai/datastore/en/operations/settings/settings/>`_.
     :param \\**kwargs: All other args are passed to the
                        :py:class:`~datastore_driver.connection.Connection`
                        constructor.
@@ -140,7 +140,7 @@ class Client(object):
         if round_robin and 'alt_hosts' in kwargs:
             alt_hosts = kwargs.pop('alt_hosts')
             for host in alt_hosts.split(','):
-                url = urlparse('clickhouse://' + host)
+                url = urlparse('datastore://' + host)
 
                 connection_kwargs = kwargs.copy()
                 num_args = len(args)
@@ -278,7 +278,7 @@ class Client(object):
 
         self.connection.context.client_settings = client_settings
 
-        # The rest of settings are ClickHouse-related.
+        # The rest of settings are Datastore-related.
         query_settings = self.settings.copy()
         query_settings.update(settings)
         self.connection.context.settings = query_settings
@@ -343,7 +343,7 @@ class Client(object):
         :param external_tables: external tables to send.
                                 Defaults to ``None`` (no external tables).
         :param query_id: the query identifier. If no query id specified
-                         ClickHouse server will generate it.
+                         Datastore server will generate it.
         :param settings: dictionary of query settings.
                          Defaults to ``None`` (no additional settings).
         :param types_check: enables type checking of data for INSERT queries.
@@ -407,7 +407,7 @@ class Client(object):
         :param external_tables: external tables to send.
                                 Defaults to ``None`` (no external tables).
         :param query_id: the query identifier. If no query id specified
-                         ClickHouse server will generate it.
+                         Datastore server will generate it.
         :param settings: dictionary of query settings.
                          Defaults to ``None`` (no additional settings).
         :param types_check: enables type checking of data for INSERT queries.
@@ -445,7 +445,7 @@ class Client(object):
         :param external_tables: external tables to send.
                                 Defaults to ``None`` (no external tables).
         :param query_id: the query identifier. If no query id specified
-                         ClickHouse server will generate it.
+                         Datastore server will generate it.
         :param settings: dictionary of query settings.
                          Defaults to ``None`` (no additional settings).
         :param types_check: enables type checking of data for INSERT queries.
@@ -475,7 +475,7 @@ class Client(object):
         :param external_tables: external tables to send.
                                 Defaults to ``None`` (no external tables).
         :param query_id: the query identifier. If no query id specified
-                         ClickHouse server will generate it.
+                         Datastore server will generate it.
         :param settings: dictionary of query settings.
                          Defaults to ``None`` (no additional settings).
         :param replace_nonwords: boolean to replace non-words in column names
@@ -515,7 +515,7 @@ class Client(object):
         :param external_tables: external tables to send.
                                 Defaults to ``None`` (no external tables).
         :param query_id: the query identifier. If no query id specified
-                         ClickHouse server will generate it.
+                         Datastore server will generate it.
         :param settings: dictionary of query settings.
                          Defaults to ``None`` (no additional settings).
         :return: number of inserted rows.
@@ -796,13 +796,13 @@ class Client(object):
 
         For example::
 
-            clickhouse://[user:password]@localhost:9000/default
-            clickhouses://[user:password]@localhost:9440/default
+            datastore://[user:password]@localhost:9000/default
+            datastores://[user:password]@localhost:9440/default
 
         Three URL schemes are supported:
 
-            * clickhouse:// creates a normal TCP socket connection
-            * clickhouses:// creates a SSL wrapped TCP socket connection
+            * datastore:// creates a normal TCP socket connection
+            * datastores:// creates a SSL wrapped TCP socket connection
 
         Any additional querystring arguments will be passed along to
         the Connection class's initializer.

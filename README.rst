@@ -1,4 +1,4 @@
-ClickHouse Python Driver
+Datastore Python Driver
 ========================
 
 .. image:: https://img.shields.io/pypi/v/datastore-driver.svg
@@ -19,7 +19,7 @@ ClickHouse Python Driver
 .. image:: https://github.com/mymarilyn/datastore-driver/actions/workflows/actions.yml/badge.svg
    :target: https://github.com/mymarilyn/datastore-driver/actions/workflows/actions.yml
 
-ClickHouse Python Driver with native (TCP) interface support.
+Datastore Python Driver with native (TCP) interface support.
 
 Asynchronous wrapper is available here: https://github.com/mymarilyn/aioch
 
@@ -116,7 +116,7 @@ DB API example:
 
         >>> from datastore_driver import connect
         >>>
-        >>> conn = connect('clickhouse://localhost')
+        >>> conn = connect('datastore://localhost')
         >>> cursor = conn.cursor()
         >>>
         >>> cursor.execute('SHOW TABLES')
@@ -151,5 +151,5 @@ DB API example:
 License
 =======
 
-ClickHouse Python Driver is distributed under the `MIT license
+Datastore Python Driver is distributed under the `MIT license
 <http://www.opensource.org/licenses/mit-license.php>`_.

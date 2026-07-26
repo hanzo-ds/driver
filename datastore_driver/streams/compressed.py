@@ -1,10 +1,10 @@
 from io import BytesIO
 
 try:
-    from clickhouse_cityhash.cityhash import CityHash128
+    from datastore_cityhash.cityhash import CityHash128
 except ImportError:
     raise RuntimeError(
-        'Package clickhouse-cityhash is required to use compression'
+        'Package datastore-cityhash is required to use compression'
     )
 
 from .native import BlockOutputStream, BlockInputStream

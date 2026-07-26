@@ -27,7 +27,7 @@ def make_date_lut_range(date_start, date_end):
     )
 
 
-enable_lazy_date_lut = getenv('CLICKHOUSE_DRIVER_LASY_DATE_LUT', False)
+enable_lazy_date_lut = getenv('DATASTORE_DRIVER_LASY_DATE_LUT', False)
 if enable_lazy_date_lut:
     try:
         start, end = enable_lazy_date_lut.split(':')

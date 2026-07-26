@@ -84,10 +84,10 @@ class ServerInfo(object):
 
 class Connection(object):
     """
-    Represents connection between client and ClickHouse server.
+    Represents connection between client and Datastore server.
 
-    :param host: host with running ClickHouse server.
-    :param port: port ClickHouse server is bound to.
+    :param host: host with running Datastore server.
+    :param port: port Datastore server is bound to.
                  Defaults to ``9000`` if connection is not secured and
                  to ``9440`` if connection is secured.
     :param database: database connect to. Defaults to ``'default'``.
@@ -172,7 +172,7 @@ class Connection(object):
 
         if alt_hosts:
             for host in alt_hosts.split(','):
-                url = urlparse('clickhouse://' + host)
+                url = urlparse('datastore://' + host)
                 self.hosts.append((url.hostname, url.port or default_port))
 
         self.database = database
@@ -242,7 +242,7 @@ class Connection(object):
 
     def __repr__(self):
         dsn = '%s://%s:***@%s:%s/%s' % (
-            'clickhouses' if self.secure_socket else 'clickhouse',
+            'datastores' if self.secure_socket else 'datastore',
             self.user, self.host, self.port, self.database
         ) if self.connected else '(not connected)'
 

@@ -77,7 +77,7 @@ class NumpyDateTime64Column(NumpyDateTimeColumnBase):
         super(NumpyDateTime64Column, self).__init__(**kwargs)
 
     def read_items(self, n_items, buf):
-        # Clickhouse:     t seconds is represented as t * 10^scale.
+        # Datastore:     t seconds is represented as t * 10^scale.
         # datetime64[ns]: t seconds is represented as t * 10^9.
         # Since 0 <= scale <= 9, multiply by the integer 10^(9 - scale).
         items = super(NumpyDateTime64Column, self).read_items(n_items, buf)

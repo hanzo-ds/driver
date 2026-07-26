@@ -1,5 +1,5 @@
 import sys
-import clickhouse_connect
+import datastore_connect
 
 cols = [
     'UniqueCarrier', 'Carrier', 'TailNum', 'FlightNum', 'Origin', 'OriginCityName', 'OriginState',
@@ -15,7 +15,7 @@ cols = [
 ]
 
 query = "SELECT {} FROM perftest.ontime WHERE FlightDate < '{}'".format(', '.join(cols), sys.argv[1])
-client = clickhouse_connect.get_client(host='localhost', query_limit=None, compress=False)
+client = datastore_connect.get_client(host='localhost', query_limit=None, compress=False)
 
 rv = client.query(query)
 with rv:

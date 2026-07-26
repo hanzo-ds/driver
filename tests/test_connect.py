@@ -317,7 +317,7 @@ class ConnectTestCase(BaseTestCase):
             # If certificate not found
             elif e.code == errors.ErrorCodes.POCO_EXCEPTION and \
                     'No such file or directory' in e.message:
-                self.skipTest('No certificate found on ClickHouse server')
+                self.skipTest('No certificate found on Datastore server')
             else:
                 raise
 

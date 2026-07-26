@@ -21,7 +21,7 @@ def connect(dsn=None, host=None,
 
     The connection can be specified via DSN:
 
-        ``conn = connect("clickhouse://localhost/test?param1=value1&...")``
+        ``conn = connect("datastore://localhost/test?param1=value1&...")``
 
     or using database and credentials arguments:
 
@@ -30,8 +30,8 @@ def connect(dsn=None, host=None,
 
     The basic connection parameters are:
 
-    - *host*: host with running ClickHouse server.
-    - *port*: port ClickHouse server is bound to.
+    - *host*: host with running Datastore server.
+    - *port*: port Datastore server is bound to.
     - *database*: database connect to.
     - *user*: database user.
     - *password*: user's password.

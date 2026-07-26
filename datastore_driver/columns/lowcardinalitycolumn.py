@@ -47,7 +47,7 @@ class LowCardinalityColumn(Column):
     def write_state_prefix(self, buf):
         super(LowCardinalityColumn, self).write_state_prefix(buf)
 
-        # KeysSerializationVersion. See ClickHouse docs.
+        # KeysSerializationVersion. See Datastore docs.
         write_binary_int64(1, buf)
 
     def _write_data(self, items, buf):

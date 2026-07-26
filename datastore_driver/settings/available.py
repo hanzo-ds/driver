@@ -9,7 +9,7 @@ SettingInt64 = SettingUInt64
 SettingSeconds = SettingMilliseconds = SettingUInt64
 
 # Server cares about possible choices validation.
-# See https://github.com/yandex/ClickHouse/blob/master/dbms/src/
+# See https://github.com/yandex/Datastore/blob/master/dbms/src/
 # Interpreters/Settings.h for all choices.
 SettingLoadBalancing = SettingTotalsMode = SettingCompressionMethod = \
     SettingDistributedProductMode = SettingGlobalSubqueriesMethod = \

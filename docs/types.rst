@@ -2,9 +2,9 @@
 Supported types
 ===============
 
-Each ClickHouse type is deserialized to a corresponding Python type when SELECT queries are prepared.
+Each Datastore type is deserialized to a corresponding Python type when SELECT queries are prepared.
 When serializing INSERT queries, datastore-driver accepts a broader range of Python types.
-The following ClickHouse types are supported by datastore-driver:
+The following Datastore types are supported by datastore-driver:
 
 
 [U]Int8/16/32/64/128/256
@@ -42,16 +42,16 @@ can control LUT initialization process. There are 3 options:
   * Static initialization with whole date range like it was before 0.2.8.
     Default.
   * Lazy initialization. LUT will filled during Date columns processing. To
-    enable this option set ``CLICKHOUSE_DRIVER_LASY_DATE_LUT`` environment
+    enable this option set ``DATASTORE_DRIVER_LASY_DATE_LUT`` environment
     variable with non-empty value.
 
-    Example ``CLICKHOUSE_DRIVER_LASY_DATE_LUT=1``.
+    Example ``DATASTORE_DRIVER_LASY_DATE_LUT=1``.
   * Lazy with static partial date range initialization. To enable this option
-    set ``CLICKHOUSE_DRIVER_LASY_DATE_LUT`` environment variable with desired
+    set ``DATASTORE_DRIVER_LASY_DATE_LUT`` environment variable with desired
     date range. LUT will partially filled with specified date range. If some
     date is not in this interval LUT will be lazy updated.
 
-    Example ``CLICKHOUSE_DRIVER_LASY_DATE_LUT=2000-01-01:2030-01-01``.
+    Example ``DATASTORE_DRIVER_LASY_DATE_LUT=2000-01-01:2030-01-01``.
 
 
 DateTime('timezone')/DateTime64('timezone')
@@ -67,7 +67,7 @@ insertion of datetime column is a bottleneck.
 
 SELECT type: :class:`~datetime.datetime`.
 
-Setting `use_client_time_zone <https://clickhouse.com/docs/en/sql-reference/data-types/datetime/#usage-remarks>`_ is taken into consideration.
+Setting `use_client_time_zone <https://docs.hanzo.ai/datastore/en/sql-reference/data-types/datetime/#usage-remarks>`_ is taken into consideration.
 
 You can cast DateTime column to integers if you are facing performance issues when selecting large amount of rows.
 
@@ -107,7 +107,7 @@ String columns can be returned without any decoding. In this case return values 
 
 
 If a column has FixedString type, upon returning from SELECT it may contain trailing zeroes
-in accordance with ClickHouse's storage format. Trailing zeroes are stripped by driver for convenience.
+in accordance with Datastore's storage format. Trailing zeroes are stripped by driver for convenience.
 
 During SELECT, if a string cannot be decoded with specified encoding, it will return as :class:`bytes`.
 
@@ -301,14 +301,14 @@ SELECT type: :class:`tuple`.
 
 .. note::
 
-    Currently, for ClickHouse server 23.3.1, JSON column ``Object('json')``
+    Currently, for Datastore server 23.3.1, JSON column ``Object('json')``
     and **namedtuple** column ``Tuple(b Int8)`` have the same binary
     representation. There is no way to distinct one column from another without
     additional inspection like ``DESCRIBE TABLE`` `query
-    <https://github.com/ClickHouse/ClickHouse/issues/48822>`_. But this will
+    <https://github.com/Datastore/Datastore/issues/48822>`_. But this will
     not work for complicated queries with joins.
 
-    To interpret ClickHouse namedtuple column alongside with
+    To interpret Datastore namedtuple column alongside with
     ``allow_experimental_object_type=1`` as Python tuple set
     ``namedtuple_as_json`` setting to ``False``.
 
@@ -376,7 +376,7 @@ columns for are ``col.name`` and ``col.version``.
 
       2 rows in set. Elapsed: 0.004 sec.
 
-Inserting data into nested column in ``clickhouse-client``:
+Inserting data into nested column in ``datastore-client``:
 
     .. code-block:: sql
 
@@ -432,7 +432,7 @@ Nested type is represented by array of named tuples when flatten_nested=0.
 
       1 rows in set. Elapsed: 0.004 sec.
 
-Inserting data into nested column in ``clickhouse-client``:
+Inserting data into nested column in ``datastore-client``:
 
     .. code-block:: sql
 

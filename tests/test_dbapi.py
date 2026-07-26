@@ -57,7 +57,7 @@ class DBAPITestCase(DBAPITestCaseBase):
 
     def test_from_dsn(self):
         connection = connect(
-            'clickhouse://{user}:{password}@{host}:{port}/{database}'.format(
+            'datastore://{user}:{password}@{host}:{port}/{database}'.format(
                 user=self.user, password=self.password,
                 host=self.host, port=self.port, database=self.database
             )

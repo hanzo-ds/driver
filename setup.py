@@ -68,7 +68,7 @@ setup(
     name='datastore-driver',
     version=read_version(),
 
-    description='Python driver with native interface for ClickHouse',
+    description='Python driver with native interface for Datastore',
     long_description=long_description,
 
     url=github_url,
@@ -113,7 +113,7 @@ setup(
         'Topic :: Scientific/Engineering :: Information Analysis'
     ],
 
-    keywords='ClickHouse db database cloud analytics',
+    keywords='Datastore db database cloud analytics',
 
     project_urls={
         'Documentation': 'https://datastore-driver.readthedocs.io',
@@ -130,9 +130,9 @@ setup(
         'lz4': [
             'lz4<=3.0.1; implementation_name=="pypy"',
             'lz4; implementation_name!="pypy"',
-            'clickhouse-cityhash>=1.0.2.1'
+            'datastore-cityhash>=1.0.2.1'
         ],
-        'zstd': ['zstd', 'clickhouse-cityhash>=1.0.2.1'],
+        'zstd': ['zstd', 'datastore-cityhash>=1.0.2.1'],
         'numpy': ['numpy>=1.12.0', 'pandas>=0.24.0']
     },
     test_suite='pytest'

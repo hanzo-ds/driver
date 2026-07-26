@@ -6,7 +6,7 @@ Installation
 Python Version
 --------------
 
-Clickhouse-driver supports Python 3.7 and newer and PyPy.
+Datastore-driver supports Python 3.7 and newer and PyPy.
 
 Build Dependencies
 ------------------
@@ -41,14 +41,14 @@ These distributions will be installed automatically when installing datastore-dr
 Optional dependencies
 ~~~~~~~~~~~~~~~~~~~~~
 
-These distributions will not be installed automatically. Clickhouse-driver will detect and
+These distributions will not be installed automatically. Datastore-driver will detect and
 use them if you install them.
 
-* `clickhouse-cityhash`_ provides CityHash algorithm of specific version, see :ref:`compression-cityhash-notes`.
+* `datastore-cityhash`_ provides CityHash algorithm of specific version, see :ref:`compression-cityhash-notes`.
 * `lz4`_ enables `LZ4/LZ4HC compression <http://www.lz4.org/>`_ support.
 * `zstd`_ enables `ZSTD compression <https://facebook.github.io/zstd/>`_ support.
 
-.. _clickhouse-cityhash: https://pythonhosted.org/blinker/
+.. _datastore-cityhash: https://pythonhosted.org/blinker/
 .. _lz4: https://python-lz4.readthedocs.io/
 .. _zstd: https://pypi.org/project/zstd/
 

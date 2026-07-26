@@ -1,20 +1,20 @@
 version: '3'
 
 services:
-  clickhouse-server:
-    image: "$ORG/clickhouse-server:$VERSION"
-    container_name: test-clickhouse-server
+  datastore-server:
+    image: "$ORG/datastore-server:$VERSION"
+    container_name: test-datastore-server
     environment:
       - TZ=Europe/Moscow
     ports:
       - "127.0.0.1:9000:9000"
       - "127.0.0.1:9440:9440"
     volumes:
-      - "./clickhouse_server_config/$TOP_LEVEL.xml:/etc/clickhouse-server/config.d/test_config.xml"
-      - "./clickhouse_server_config/certs:/etc/clickhouse-server/certs"
+      - "./datastore_server_config/$TOP_LEVEL.xml:/etc/datastore-server/config.d/test_config.xml"
+      - "./datastore_server_config/certs:/etc/datastore-server/certs"
 
-  clickhouse-client:
-    image: "$ORG/clickhouse-server:$VERSION"
-    container_name: test-clickhouse-client
+  datastore-client:
+    image: "$ORG/datastore-server:$VERSION"
+    container_name: test-datastore-client
     entrypoint: /bin/sh
     command: [-c, 'while :; do sleep 1; done']

@@ -16,7 +16,7 @@ jobs:
           - "3.12"
           - "pypy-3.9"
           - "pypy-3.10"
-        clickhouse-version:
+        datastore-version:
           - 24.4.1
           - 24.1.8.22
           - 24.1.7.18
@@ -45,11 +45,11 @@ jobs:
           - 19.9.2.4   # allow_suspicious_low_cardinality_types
           - 19.8.3.8   # SimpleAggregateFunction
         include:
-          - clickhouse-version: 20.3.20.6
+          - datastore-version: 20.3.20.6
             use-numpy: 1
             python-version: 3.8
 
-    name: ${{ matrix.python-version }} CH=${{ matrix.clickhouse-version }} NUMPY=${{ matrix.use-numpy }}
+    name: ${{ matrix.python-version }} CH=${{ matrix.datastore-version }} NUMPY=${{ matrix.use-numpy }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -68,21 +68,21 @@ jobs:
           pip install flake8 flake8-print
       - name: Run flake8
         run: flake8
-      - name: Start ClickHouse server and client containers
+      - name: Start Datastore server and client containers
         run: |
-          echo "VERSION=${{ matrix.clickhouse-version }}" > tests/.env
-          if [[ "21.7" = "`echo -e "21.7\n${{ matrix.clickhouse-version }}" | sort -V | head -n1`" ]]; then echo "ORG=clickhouse"; else echo "ORG=yandex" ; fi  >> tests/.env
-          if [[ "21.10" = "`echo -e "21.10\n${{ matrix.clickhouse-version }}" | sort -V | head -n1`" ]]; then echo "TOP_LEVEL=clickhouse"; else echo "TOP_LEVEL=yandex" ; fi  >> tests/.env
+          echo "VERSION=${{ matrix.datastore-version }}" > tests/.env
+          if [[ "21.7" = "`echo -e "21.7\n${{ matrix.datastore-version }}" | sort -V | head -n1`" ]]; then echo "ORG=datastore"; else echo "ORG=yandex" ; fi  >> tests/.env
+          if [[ "21.10" = "`echo -e "21.10\n${{ matrix.datastore-version }}" | sort -V | head -n1`" ]]; then echo "TOP_LEVEL=datastore"; else echo "TOP_LEVEL=yandex" ; fi  >> tests/.env
           docker compose -f tests/docker-compose.yml up -d
-      - name: Setup clickhouse-client proxy for docker
+      - name: Setup datastore-client proxy for docker
         run: |
-          # Faking clickhouse-client real communication with container via docker exec.
-          echo -e '#!/bin/bash\n\ndocker exec -e "`env | grep ^TZ=`" test-clickhouse-client clickhouse client "$@"' | sudo tee /usr/local/bin/clickhouse-client > /dev/null
-          sudo chmod +x /usr/local/bin/clickhouse-client
-          # Overriding setup.cfg. Set host=clickhouse-server
-          sed -i 's/^host=localhost$/host=clickhouse-server/' setup.cfg
-          # Make host think that clickhouse-server is localhost
-          echo '127.0.0.1 clickhouse-server' | sudo tee /etc/hosts > /dev/null
+          # Faking datastore-client real communication with container via docker exec.
+          echo -e '#!/bin/bash\n\ndocker exec -e "`env | grep ^TZ=`" test-datastore-client datastore client "$@"' | sudo tee /usr/local/bin/datastore-client > /dev/null
+          sudo chmod +x /usr/local/bin/datastore-client
+          # Overriding setup.cfg. Set host=datastore-server
+          sed -i 's/^host=localhost$/host=datastore-server/' setup.cfg
+          # Make host think that datastore-server is localhost
+          echo '127.0.0.1 datastore-server' | sudo tee /etc/hosts > /dev/null
       - name: Build cython extensions with tracing
         run: CYTHON_TRACE=1 python setup.py build_ext --define CYTHON_TRACE
         if: ${{ !contains(matrix.python-version, 'pypy') }}
@@ -109,7 +109,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COVERALLS_PARALLEL: true
-          COVERALLS_FLAG_NAME: ${{ matrix.python-version }} CH=${{ matrix.clickhouse-version }} NUMPY=${{ matrix.use-numpy }}
+          COVERALLS_FLAG_NAME: ${{ matrix.python-version }} CH=${{ matrix.datastore-version }} NUMPY=${{ matrix.use-numpy }}
 
   coveralls-finished:
     name: Indicate completion to coveralls.io
@@ -140,23 +140,23 @@ jobs:
 #        with:
 #          username: ${{ secrets.DOCKER_HUB_USERNAME }}
 #          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Start ClickHouse server and client containers
+      - name: Start Datastore server and client containers
         run: |
           echo "VERSION=$VERSION" > tests/.env
-          if [[ "21.7" = "`echo -e "21.7\n$VERSION" | sort -V | head -n1`" ]]; then echo "ORG=clickhouse"; else echo "ORG=yandex" ; fi  >> tests/.env
-          if [[ "21.10" = "`echo -e "21.10\n$VERSION" | sort -V | head -n1`" ]]; then echo "TOP_LEVEL=clickhouse"; else echo "TOP_LEVEL=yandex" ; fi  >> tests/.env
+          if [[ "21.7" = "`echo -e "21.7\n$VERSION" | sort -V | head -n1`" ]]; then echo "ORG=datastore"; else echo "ORG=yandex" ; fi  >> tests/.env
+          if [[ "21.10" = "`echo -e "21.10\n$VERSION" | sort -V | head -n1`" ]]; then echo "TOP_LEVEL=datastore"; else echo "TOP_LEVEL=yandex" ; fi  >> tests/.env
           docker compose -f tests/docker-compose.yml up -d
         env:
           VERSION: 20.3.7.46
-      - name: Setup clickhouse-client proxy for docker
+      - name: Setup datastore-client proxy for docker
         run: |
-          # Faking clickhouse-client real communication with container via docker exec.
-          echo -e '#!/bin/bash\n\ndocker exec -e "`env | grep ^TZ=`" test-clickhouse-client clickhouse-client "$@"' | sudo tee /usr/local/bin/clickhouse-client > /dev/null
-          sudo chmod +x /usr/local/bin/clickhouse-client
-          # Overriding setup.cfg. Set host=clickhouse-server
-          sed -i 's/^host=localhost$/host=clickhouse-server/' setup.cfg
-          # Make host think that clickhouse-server is localhost
-          echo '127.0.0.1 clickhouse-server' | sudo tee /etc/hosts > /dev/null
+          # Faking datastore-client real communication with container via docker exec.
+          echo -e '#!/bin/bash\n\ndocker exec -e "`env | grep ^TZ=`" test-datastore-client datastore-client "$@"' | sudo tee /usr/local/bin/datastore-client > /dev/null
+          sudo chmod +x /usr/local/bin/datastore-client
+          # Overriding setup.cfg. Set host=datastore-server
+          sed -i 's/^host=localhost$/host=datastore-server/' setup.cfg
+          # Make host think that datastore-server is localhost
+          echo '127.0.0.1 datastore-server' | sudo tee /etc/hosts > /dev/null
       - name: Install requirements
         run: |
           python testsrequire.py

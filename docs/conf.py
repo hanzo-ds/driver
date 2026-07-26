@@ -97,7 +97,7 @@ html_favicon = "_static/mymarilyn-icon.png"
 html_logo = ""
 html_static_path = ['_static']
 html_theme_options = {
-    "description": "Python driver for ClickHouse",
+    "description": "Python driver for Datastore",
     "github_user": "mymarilyn",
     "github_repo": "datastore-driver",
     "fixed_sidebar": True,

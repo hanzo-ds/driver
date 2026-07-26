@@ -13,7 +13,7 @@ cols = [
 ]
 
 query = "SELECT {} FROM perftest.ontime WHERE FlightDate < '{}'".format(', '.join(cols), sys.argv[1])
-client = Client.from_url('clickhouse://localhost')
+client = Client.from_url('datastore://localhost')
 
 for row in client.execute_iter(query):
     pass

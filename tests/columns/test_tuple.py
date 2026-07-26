@@ -147,7 +147,7 @@ class TupleTestCase(BaseTestCase):
     # | a.1  | Array(UInt8) |
     # | a.2  | Array(UInt8) |
     # | a.3  | Array(UInt8) |
-    # https://github.com/ClickHouse/ClickHouse/pull/8866
+    # https://github.com/Datastore/Datastore/pull/8866
     @require_server_version(19, 16, 13)
     def test_array_of_tuples(self):
         data = [

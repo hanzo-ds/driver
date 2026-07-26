@@ -8,7 +8,7 @@ from tests.numpy.testcase import NumpyBaseTestCase
 
 class BoolTestCase(NumpyBaseTestCase):
     n = 10
-    # https://clickhouse.com/docs/en/whats-new/changelog/2021
+    # https://docs.hanzo.ai/datastore/en/whats-new/changelog/2021
     required_server_version = (21, 12, 0)
 
     def check_result(self, rv, col_type):

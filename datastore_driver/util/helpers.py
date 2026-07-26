@@ -66,13 +66,13 @@ def parse_url(url):
 
     For example::
 
-        clickhouse://[user:password]@localhost:9000/default
-        clickhouses://[user:password]@localhost:9440/default
+        datastore://[user:password]@localhost:9000/default
+        datastores://[user:password]@localhost:9440/default
 
     Three URL schemes are supported:
 
-        * clickhouse:// creates a normal TCP socket connection
-        * clickhouses:// creates a SSL wrapped TCP socket connection
+        * datastore:// creates a normal TCP socket connection
+        * datastores:// creates a SSL wrapped TCP socket connection
 
     Any additional querystring arguments will be passed along to
     the Connection class's initializer.
@@ -97,7 +97,7 @@ def parse_url(url):
     if url.password is not None:
         kwargs['password'] = unquote(url.password)
 
-    if url.scheme == 'clickhouses':
+    if url.scheme == 'datastores':
         kwargs['secure'] = True
 
     compression_algs = {'lz4', 'lz4hc', 'zstd'}

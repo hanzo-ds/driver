@@ -16,7 +16,7 @@ Features
 External data for query processing
 ----------------------------------
 
-You can pass `external data <https://clickhouse.com/docs/en/engines/table-engines/special/external-data/>`_
+You can pass `external data <https://docs.hanzo.ai/datastore/en/engines/table-engines/special/external-data/>`_
 alongside with query:
 
     .. code-block:: python
@@ -38,7 +38,7 @@ alongside with query:
 Settings
 --------
 
-There are a lot of ClickHouse server `settings <https://clickhouse.com/docs/en/operations/settings/settings/>`_.
+There are a lot of Datastore server `settings <https://docs.hanzo.ai/datastore/en/operations/settings/settings/>`_.
 Settings can be specified during Client initialization:
 
     .. code-block:: python
@@ -83,9 +83,9 @@ Client with compression support can be constructed as follows:
 CityHash algorithm notes
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Unfortunately ClickHouse server comes with built-in old version of CityHash algorithm (1.0.2).
+Unfortunately Datastore server comes with built-in old version of CityHash algorithm (1.0.2).
 That's why we can't use original `CityHash <https://pypi.org/project/cityhash>`_ package.
-An older version is published separately at `PyPI <https://pypi.org/project/clickhouse-cityhash>`_.
+An older version is published separately at `PyPI <https://pypi.org/project/datastore-cityhash>`_.
 
 
 Secure connection
@@ -99,7 +99,7 @@ Secure connection
         >>> # Using self-signed certificate.
         ... self_signed_client = Client(
         ...     'localhost', secure=True,
-        ...     ca_certs='/etc/clickhouse-server/server.crt'
+        ...     ca_certs='/etc/datastore-server/server.crt'
         ... )
         >>> # Disable verification.
         ... no_verifyed_client = Client(
@@ -129,11 +129,11 @@ You can manually set query identificator for each query. UUID for example:
         >>> client.execute(
         ...     'SELECT * FROM system.processes', query_id=query_id
         ... )
-        [(1, 'default', 'bbd7dea3-eb63-4a21-b727-f55b420a7223', '127.0.0.1', 57664, 'default', 'bbd7dea3-eb63-4a21-b727-f55b420a7223', '127.0.0.1', 57664, 1, 'klebedev', 'klebedev-ThinkPad-T460', 'ClickHouse python-driver', 18, 10, 3, 54406, 0, '', '', 0.004916541, 0, 0, 0, 0, 0, 0, 0, 0, 'SELECT * FROM system.processes', (25,), ('Query', 'SelectQuery', 'NetworkReceiveElapsedMicroseconds', 'ContextLock', 'RWLockAcquiredReadLocks'), (1, 1, 54, 9, 1), ('use_uncompressed_cache', 'load_balancing', 'max_memory_usage'), ('0', 'random', '10000000000'))]
+        [(1, 'default', 'bbd7dea3-eb63-4a21-b727-f55b420a7223', '127.0.0.1', 57664, 'default', 'bbd7dea3-eb63-4a21-b727-f55b420a7223', '127.0.0.1', 57664, 1, 'klebedev', 'klebedev-ThinkPad-T460', 'Datastore python-driver', 18, 10, 3, 54406, 0, '', '', 0.004916541, 0, 0, 0, 0, 0, 0, 0, 0, 'SELECT * FROM system.processes', (25,), ('Query', 'SelectQuery', 'NetworkReceiveElapsedMicroseconds', 'ContextLock', 'RWLockAcquiredReadLocks'), (1, 1, 54, 9, 1), ('use_uncompressed_cache', 'load_balancing', 'max_memory_usage'), ('0', 'random', '10000000000'))]
 
 You can cancel query with specific id by sending another query with the same
 query id if option `replace_running_query
-<https://clickhouse.com/docs/en/operations/settings/settings/#replace-running-query>`_ is set to 1.
+<https://docs.hanzo.ai/datastore/en/operations/settings/settings/#replace-running-query>`_ is set to 1.
 
 Query results are fetched by the same instance of Client that emitted query.
 
@@ -168,7 +168,7 @@ Query execution statistics
 
 Client stores statistics about last query execution. It can be obtained by
 accessing `last_query` attribute.
-Statistics is sent from ClickHouse server and calculated on client side.
+Statistics is sent from Datastore server and calculated on client side.
 `last_query` contains info about:
 
 * profile: rows before limit
@@ -267,7 +267,7 @@ Multiple hosts
 Additional connection points can be defined by using `alt_hosts`.
 If main connection point is unavailable driver will use next one from `alt_hosts`.
 
-This option is good for ClickHouse cluster with multiple replicas.
+This option is good for Datastore cluster with multiple replicas.
 
     .. code-block:: python
 
@@ -332,7 +332,7 @@ Parameters are expected in Python extended format codes, e.g.
     .. code-block:: python
 
         >>> from datastore_driver import connect
-        >>> conn = connect('clickhouse://localhost')
+        >>> conn = connect('datastore://localhost')
         >>> cursor = conn.cursor()
         >>>
         >>> cursor.execute('SHOW TABLES')
@@ -364,16 +364,16 @@ Parameters are expected in Python extended format codes, e.g.
         >>> cursor.fetchall()
         [(303,)]
 
-ClickHouse native protocol is synchronous: when you emit query in connection
+Datastore native protocol is synchronous: when you emit query in connection
 you must read whole server response before sending next query through this
 connection. To make DB API thread-safe each cursor should use it's own
 connection to the server. In  Under the hood :ref:`dbapi-cursor` is wrapper
 around pure :ref:`api-client`.
 
 :ref:`dbapi-connection` class is just wrapper for handling multiple cursors
-(clients) and do not initiate actual connections to the ClickHouse server.
+(clients) and do not initiate actual connections to the Datastore server.
 
-There are some non-standard ClickHouse-related :ref:`Cursor methods
+There are some non-standard Datastore-related :ref:`Cursor methods
 <dbapi-cursor>` for: external data, settings, etc.
 
 For automatic disposal Connection and Cursor instances can be used as context
@@ -381,7 +381,7 @@ managers:
 
     .. code-block:: python
 
-        >>> with connect('clickhouse://localhost') as conn:
+        >>> with connect('datastore://localhost') as conn:
         >>>     with conn.cursor() as cursor:
         >>>        cursor.execute('SHOW TABLES')
         >>>        print(cursor.fetchall())
@@ -393,7 +393,7 @@ You can use ``cursor_factory`` argument to get results as dicts or named tuples
     .. code-block:: python
 
         >>> from datastore_driver.dbapi.extras import DictCursor
-        >>> with connect('clickhouse://localhost') as conn:
+        >>> with connect('datastore://localhost') as conn:
         >>>     with conn.cursor(cursor_factory=DictCursor) as cursor:
         >>>        cursor.execute('SELECT * FROM system.tables')
         >>>        print(cursor.fetchall())
@@ -401,7 +401,7 @@ You can use ``cursor_factory`` argument to get results as dicts or named tuples
     .. code-block:: python
 
         >>> from datastore_driver.dbapi.extras import NamedTupleCursor
-        >>> with connect('clickhouse://localhost') as conn:
+        >>> with connect('datastore://localhost') as conn:
         >>>     with conn.cursor(cursor_factory=NamedTupleCursor) as cursor:
         >>>        cursor.execute('SELECT * FROM system.tables')
         >>>        print(cursor.fetchall())
@@ -549,7 +549,7 @@ Each Client instance can be used as a context manager:
         >>>     client.execute('SELECT 1')
 
 
-Upon exit, any established connection to the ClickHouse server will be closed
+Upon exit, any established connection to the Datastore server will be closed
 automatically.
 
 
@@ -560,7 +560,7 @@ TCP keepalive
 
 You can enable `TCP keepalive
 <https://tldp.org/HOWTO/TCP-Keepalive-HOWTO/overview.html>`_ on connection with
-ClickHouse server. This setting is disabled by default. When parameter
+Datastore server. This setting is disabled by default. When parameter
 ``tcp_keepalive`` is set to ``True`` system TCP keepalive settings are used.
 
     .. code-block:: python

@@ -6,10 +6,10 @@ from .errors import InterfaceError
 
 class Connection(object):
     """
-    Creates new Connection for accessing ClickHouse database.
+    Creates new Connection for accessing Datastore database.
 
     Connection is just wrapper for handling multiple cursors (clients) and
-    do not initiate actual connections to the ClickHouse server.
+    do not initiate actual connections to the Datastore server.
 
     See parameters description in
     :data:`~datastore_driver.connection.Connection`.
@@ -69,13 +69,13 @@ class Connection(object):
 
     def commit(self):
         """
-        Do nothing since ClickHouse has no transactions.
+        Do nothing since Datastore has no transactions.
         """
         pass
 
     def rollback(self):
         """
-        Do nothing since ClickHouse has no transactions.
+        Do nothing since Datastore has no transactions.
         """
         pass
 

@@ -14,7 +14,7 @@ When you read data over HTTP you may need to cast strings into Python types.
 Test data
 ---------
 
-Sample data for testing is taken from `ClickHouse docs <https://clickhouse.com/docs/en/getting-started/example-datasets/ontime>`_.
+Sample data for testing is taken from `Datastore docs <https://docs.hanzo.ai/datastore/en/getting-started/example-datasets/ontime>`_.
 
 Create database and table:
 
@@ -152,11 +152,11 @@ Download some data for 2017 year:
     done
     done
 
-Insert data into ClickHouse:
+Insert data into Datastore:
 
 .. code-block:: bash
 
-    for i in *.zip; do echo $i; unzip -cq $i '*.csv' | sed 's/\.00//g' | clickhouse-client --query="INSERT INTO perftest.ontime FORMAT CSVWithNames"; done
+    for i in *.zip; do echo $i; unzip -cq $i '*.csv' | sed 's/\.00//g' | datastore-client --query="INSERT INTO perftest.ontime FORMAT CSVWithNames"; done
 
 
 Required packages
@@ -164,7 +164,7 @@ Required packages
 
 .. code-block:: bash
 
-    pip install datastore-driver requests clickhouse-connect
+    pip install datastore-driver requests datastore-connect
 
 For fast json parsing we'll use ``ujson`` package:
 
@@ -178,7 +178,7 @@ Installed packages: ::
     backports.zoneinfo==0.2.1
     certifi==2022.12.7
     charset-normalizer==3.0.1
-    clickhouse-connect==0.5.0
+    datastore-connect==0.5.0
     datastore-driver==0.2.5
     idna==3.4
     lz4==4.3.2
@@ -191,7 +191,7 @@ Installed packages: ::
     urllib3==1.26.14
     zstandard==0.19.0
 
-For ``clickhouse-connect`` we need to turn off compression with
+For ``datastore-connect`` we need to turn off compression with
 ``compress=False`` for elimination decompression overhead. This package also
 adds ``LIMIT`` clause to the query by default.
 Let's disable it off with ``query_limit=None``.
@@ -207,7 +207,7 @@ Python: Python 3.8.12 (default, Apr 13 2022, 21:16:23) [GCC 11.2.0]
 Benchmarking
 ------------
 
-Let's pick number of rows for testing with ``clickhouse-client``.
+Let's pick number of rows for testing with ``datastore-client``.
 
 .. code-block:: sql
 
@@ -253,7 +253,7 @@ Time will measure:
 Plain text without parsing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Let's take get plain text response from ClickHouse server as baseline.
+Let's take get plain text response from Datastore server as baseline.
 
 
 Fetching not parsed data with pure requests (1)
@@ -285,7 +285,7 @@ Get fully parsed rows with ``datastore-driver`` in Native format (4)
 .. literalinclude:: ../perf/script_04.py
     :language: python
 
-Get fully parsed rows with ``clickhouse-connect`` (14)
+Get fully parsed rows with ``datastore-connect`` (14)
 
 .. literalinclude:: ../perf/script_14.py
     :language: python
@@ -314,7 +314,7 @@ Iteration over rows with ``datastore-driver`` in Native format (7)
 .. literalinclude:: ../perf/script_07.py
     :language: python
 
-Iteration over rows with ``clickhouse-connect`` (17)
+Iteration over rows with ``datastore-connect`` (17)
 
 .. literalinclude:: ../perf/script_17.py
     :language: python
@@ -340,7 +340,7 @@ Iteration over string rows with ``datastore-driver`` in Native format (10)
 .. literalinclude:: ../perf/script_10.py
     :language: python
 
-Iteration over string rows with ``clickhouse-connect`` (15)
+Iteration over string rows with ``datastore-connect`` (15)
 
 .. literalinclude:: ../perf/script_15.py
     :language: python
@@ -364,7 +364,7 @@ Iteration over int rows with ``datastore-driver`` in Native format (13)
 .. literalinclude:: ../perf/script_13.py
     :language: python
 
-Iteration over int rows with ``clickhouse-connect`` (16)
+Iteration over int rows with ``datastore-connect`` (16)
 
 .. literalinclude:: ../perf/script_16.py
     :language: python
@@ -406,7 +406,7 @@ JSON in table is shorthand for JSONEachRow.
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |datastore-driver Native (4)      |    0.87 s |    1.50 s |    2.21 s |    4.20 s |    6.32 s |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
-|clickhouse-connect (14)           |    0.89 s |    1.72 s |    2.46 s |    4.85 s |    7.19 s |
+|datastore-connect (14)           |    0.89 s |    1.72 s |    2.46 s |    4.85 s |    7.19 s |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |**Parsed rows: memory**                                                                       |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
@@ -418,7 +418,7 @@ JSON in table is shorthand for JSONEachRow.
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |datastore-driver Native (4)      |    155 MB |    343 MB |    530 MB |   1.04 GB |   1.58 GB |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
-|clickhouse-connect (14)           |    139 MB |    333 MB |    524 MB |   1.05 GB |   1.61 GB |
+|datastore-connect (14)           |    139 MB |    333 MB |    524 MB |   1.05 GB |   1.61 GB |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |**Iteration over rows: timing**                                                               |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
@@ -430,7 +430,7 @@ JSON in table is shorthand for JSONEachRow.
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |datastore-driver Native (7)      |    0.72 s |    1.38 s |    2.01 s |    3.65 s |    5.45 s |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
-|clickhouse-connect (17)           |    0.85 s |    1.62 s |    2.12 s |    4.12 s |    6.05 s |
+|datastore-connect (17)           |    0.85 s |    1.62 s |    2.12 s |    4.12 s |    6.05 s |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |**Iteration over rows: memory**                                                               |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
@@ -442,7 +442,7 @@ JSON in table is shorthand for JSONEachRow.
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |datastore-driver Native (7)      |     91 MB |     93 MB |     93 MB |     94 MB |     94 MB |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
-|clickhouse-connect (17)           |     68 MB |     68 MB |     68 MB |     68 MB |     68 MB |
+|datastore-connect (17)           |     68 MB |     68 MB |     68 MB |     68 MB |     68 MB |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |**Iteration over string rows: timing**                                                        |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
@@ -452,7 +452,7 @@ JSON in table is shorthand for JSONEachRow.
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |datastore-driver Native (10)     |    0.63 s |    1.06 s |    1.44 s |    2.45 s |    3.57 s |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
-|clickhouse-connect (15)           |    0.62 s |    1.13 s |    1.53 s |    2.84 s |    4.00 s |
+|datastore-connect (15)           |    0.62 s |    1.13 s |    1.53 s |    2.84 s |    4.00 s |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |**Iteration over string rows: memory**                                                        |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
@@ -462,7 +462,7 @@ JSON in table is shorthand for JSONEachRow.
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |datastore-driver Native (10)     |     77 MB |     79 MB |     79 MB |     79 MB |     79 MB |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
-|clickhouse-connect (15)           |     60 MB |     60 MB |     60 MB |     60 MB |     60 MB |
+|datastore-connect (15)           |     60 MB |     60 MB |     60 MB |     60 MB |     60 MB |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |**Iteration over int rows: timing**                                                           |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
@@ -472,7 +472,7 @@ JSON in table is shorthand for JSONEachRow.
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |datastore-driver Native (13)     |    0.55 s |    0.78 s |    1.02 s |    1.73 s |    2.44 s |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
-|clickhouse-connect (16)           |    0.54 s |    0.79 s |    1.01 s |    1.68 s |    2.20 s |
+|datastore-connect (16)           |    0.54 s |    0.79 s |    1.01 s |    1.68 s |    2.20 s |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |**Iteration over int rows: memory**                                                           |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
@@ -482,14 +482,14 @@ JSON in table is shorthand for JSONEachRow.
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 |datastore-driver Native (13)     |     71 MB |     72 MB |     72 MB |     73 MB |     73 MB |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
-|clickhouse-connect (16)           |     41 MB |     41 MB |     41 MB |     41 MB |     41 MB |
+|datastore-connect (16)           |     41 MB |     41 MB |     41 MB |     41 MB |     41 MB |
 +----------------------------------+-----------+-----------+-----------+-----------+-----------+
 
 
 Conclusion
 ----------
 
-If you need to get significant number of rows from ClickHouse server **as text** then TSV format is your choice.
+If you need to get significant number of rows from Datastore server **as text** then TSV format is your choice.
 See **Iteration over string rows** results.
 
 But if you need to manipulate over python data types then you should take a look on drivers with Native format.

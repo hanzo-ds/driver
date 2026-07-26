@@ -2,8 +2,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# Keep in sync with ClickHouse priorities
-# https://github.com/ClickHouse/ClickHouse/blob/master/src/Interpreters/InternalTextLogsQueue.cpp
+# Keep in sync with Datastore priorities
+# https://github.com/Datastore/Datastore/blob/master/src/Interpreters/InternalTextLogsQueue.cpp
 log_priorities = (
     'Unknown',
     'Fatal',

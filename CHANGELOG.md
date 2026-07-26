@@ -37,7 +37,7 @@
 
 ### Fixed
 - Date32 start interval changed to 1900-01-01. Solves issue [#409](https://github.com/mymarilyn/datastore-driver/issues/409).
-- Memory leak when clickhouse raise exception on ``BufferedSocketWriter.write_into_stream``. Solves issue [#406](https://github.com/mymarilyn/datastore-driver/issues/406). Pull request [#407](https://github.com/mymarilyn/datastore-driver/pull/407) by [pulina](https://github.com/pulina).
+- Memory leak when datastore raise exception on ``BufferedSocketWriter.write_into_stream``. Solves issue [#406](https://github.com/mymarilyn/datastore-driver/issues/406). Pull request [#407](https://github.com/mymarilyn/datastore-driver/pull/407) by [pulina](https://github.com/pulina).
 - ``input_format_null_as_default`` option for UUID produce ``00000000-0000-0000-0000-000000000000`` if set to true. Solves issue [#401](https://github.com/mymarilyn/datastore-driver/issues/401).
 - [Tests] Remove MemoryTracker asserting on INSERT statements. Solves issue [#403](https://github.com/mymarilyn/datastore-driver/issues/403).
 - Store "progress" and "profile" stats on INSERT statements. Solves issue [#391](https://github.com/mymarilyn/datastore-driver/issues/391). Pull request [#392](https://github.com/mymarilyn/datastore-driver/pull/392) by [insomnes](https://github.com/insomnes).
@@ -344,7 +344,7 @@
 
 ## [0.0.15] - 2018-09-26
 ### Fixed
-- Unpin `clickhouse-cityhash` dependency.
+- Unpin `datastore-cityhash` dependency.
 
 ## [0.0.14] - 2018-08-16
 ### Added
@@ -417,7 +417,7 @@
 ### Added
 - Configurable logging level in tests.
 - Full error codes list.
-- Force check clickhouse-cityhash is installed if compression is used.
+- Force check datastore-cityhash is installed if compression is used.
 - `Client` can be directly imported from package.
 - `insert_block_size` parameter - maximum rows in block (default is 1048576).
 - Columnar result returning (`columnar=True`). Pull request [#11](https://github.com/mymarilyn/datastore-driver/pull/11) by [kszucs](https://github.com/kszucs).
@@ -432,7 +432,7 @@
 - Version detection in setup.py.
 - Error handling on socket.shutdown.
 - Install `enum34` only if required.
-- `clickhouse-cityhash` import issue [#10](https://github.com/mymarilyn/datastore-driver/issues/10).
+- `datastore-cityhash` import issue [#10](https://github.com/mymarilyn/datastore-driver/issues/10).
 
 ### Removed
 - QuickLZ support
@@ -443,7 +443,7 @@
 - UUID type.
 - Query limits settings.
 - Code coverage.
-- ClickHouse server and driver version upped to 54276.
+- Datastore server and driver version upped to 54276.
 - Changelog.
 - Added column name to `TypeMismatchError`.
 - Query progress information.
@@ -463,7 +463,7 @@
 
 ### Changed
 - Small columns refactoring.
-- `clickhouse-client` in tests moved to docker.
+- `datastore-client` in tests moved to docker.
 
 ## [0.0.4] - 2017-06-15
 ### Added

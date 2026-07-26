@@ -14,125 +14,125 @@ class ClientFromUrlTestCase(TestCase):
         self.assertEqual(list(client.connection.hosts), another, msg=msg)
 
     def test_simple(self):
-        c = Client.from_url('clickhouse://host')
+        c = Client.from_url('datastore://host')
 
         self.assertHostsEqual(c, [('host', 9000)])
         self.assertEqual(c.connection.database, '')
 
-        c = Client.from_url('clickhouse://host/db')
+        c = Client.from_url('datastore://host/db')
 
         self.assertHostsEqual(c, [('host', 9000)])
         self.assertEqual(c.connection.database, 'db')
 
     def test_credentials(self):
-        c = Client.from_url('clickhouse://host/db')
+        c = Client.from_url('datastore://host/db')
 
         self.assertEqual(c.connection.user, 'default')
         self.assertEqual(c.connection.password, '')
 
-        c = Client.from_url('clickhouse://admin:secure@host/db')
+        c = Client.from_url('datastore://admin:secure@host/db')
 
         self.assertEqual(c.connection.user, 'admin')
         self.assertEqual(c.connection.password, 'secure')
 
-        c = Client.from_url('clickhouse://user:@host/db')
+        c = Client.from_url('datastore://user:@host/db')
 
         self.assertEqual(c.connection.user, 'user')
         self.assertEqual(c.connection.password, '')
 
     def test_credentials_unquoting(self):
-        c = Client.from_url('clickhouse://ad%3Amin:se%2Fcure@host/db')
+        c = Client.from_url('datastore://ad%3Amin:se%2Fcure@host/db')
 
         self.assertEqual(c.connection.user, 'ad:min')
         self.assertEqual(c.connection.password, 'se/cure')
 
     def test_schema(self):
-        c = Client.from_url('clickhouse://host')
+        c = Client.from_url('datastore://host')
         self.assertFalse(c.connection.secure_socket)
 
-        c = Client.from_url('clickhouses://host')
+        c = Client.from_url('datastores://host')
         self.assertTrue(c.connection.secure_socket)
 
         c = Client.from_url('test://host')
         self.assertFalse(c.connection.secure_socket)
 
     def test_port(self):
-        c = Client.from_url('clickhouse://host')
+        c = Client.from_url('datastore://host')
         self.assertHostsEqual(c, [('host', 9000)])
 
-        c = Client.from_url('clickhouses://host')
+        c = Client.from_url('datastores://host')
         self.assertHostsEqual(c, [('host', 9440)])
 
-        c = Client.from_url('clickhouses://host:1234')
+        c = Client.from_url('datastores://host:1234')
         self.assertHostsEqual(c, [('host', 1234)])
 
     def test_secure(self):
-        c = Client.from_url('clickhouse://host?secure=n')
+        c = Client.from_url('datastore://host?secure=n')
         self.assertHostsEqual(c, [('host', 9000)])
         self.assertFalse(c.connection.secure_socket)
 
-        c = Client.from_url('clickhouse://host?secure=y')
+        c = Client.from_url('datastore://host?secure=y')
         self.assertHostsEqual(c, [('host', 9440)])
         self.assertTrue(c.connection.secure_socket)
 
-        c = Client.from_url('clickhouse://host:1234?secure=y')
+        c = Client.from_url('datastore://host:1234?secure=y')
         self.assertHostsEqual(c, [('host', 1234)])
         self.assertTrue(c.connection.secure_socket)
 
         with self.assertRaises(ValueError):
-            Client.from_url('clickhouse://host:1234?secure=nonono')
+            Client.from_url('datastore://host:1234?secure=nonono')
 
     def test_compression(self):
-        c = Client.from_url('clickhouse://host?compression=n')
+        c = Client.from_url('datastore://host?compression=n')
         self.assertEqual(c.connection.compression, Compression.DISABLED)
         self.assertIsNone(c.connection.compressor_cls)
 
-        c = Client.from_url('clickhouse://host?compression=y')
+        c = Client.from_url('datastore://host?compression=y')
         self.assertEqual(c.connection.compression, Compression.ENABLED)
         self.assertIs(c.connection.compressor_cls, LZ4Compressor)
 
-        c = Client.from_url('clickhouse://host?compression=lz4')
+        c = Client.from_url('datastore://host?compression=lz4')
         self.assertEqual(c.connection.compression, Compression.ENABLED)
         self.assertIs(c.connection.compressor_cls, LZ4Compressor)
 
-        c = Client.from_url('clickhouse://host?compression=lz4hc')
+        c = Client.from_url('datastore://host?compression=lz4hc')
         self.assertEqual(c.connection.compression, Compression.ENABLED)
         self.assertIs(c.connection.compressor_cls, LZHC4Compressor)
 
-        c = Client.from_url('clickhouse://host?compression=zstd')
+        c = Client.from_url('datastore://host?compression=zstd')
         self.assertEqual(c.connection.compression, Compression.ENABLED)
         self.assertIs(c.connection.compressor_cls, ZSTDCompressor)
 
         with self.assertRaises(ValueError):
-            Client.from_url('clickhouse://host:1234?compression=custom')
+            Client.from_url('datastore://host:1234?compression=custom')
 
     def test_client_name(self):
-        c = Client.from_url('clickhouse://host?client_name=native')
-        self.assertEqual(c.connection.client_name, 'ClickHouse native')
+        c = Client.from_url('datastore://host?client_name=native')
+        self.assertEqual(c.connection.client_name, 'Datastore native')
 
     def test_timeouts(self):
         with self.assertRaises(ValueError):
-            Client.from_url('clickhouse://host?connect_timeout=test')
+            Client.from_url('datastore://host?connect_timeout=test')
 
-        c = Client.from_url('clickhouse://host?connect_timeout=1.2')
+        c = Client.from_url('datastore://host?connect_timeout=1.2')
         self.assertEqual(c.connection.connect_timeout, 1.2)
 
-        c = Client.from_url('clickhouse://host?send_receive_timeout=1.2')
+        c = Client.from_url('datastore://host?send_receive_timeout=1.2')
         self.assertEqual(c.connection.send_receive_timeout, 1.2)
 
-        c = Client.from_url('clickhouse://host?sync_request_timeout=1.2')
+        c = Client.from_url('datastore://host?sync_request_timeout=1.2')
         self.assertEqual(c.connection.sync_request_timeout, 1.2)
 
     def test_compress_block_size(self):
         with self.assertRaises(ValueError):
-            Client.from_url('clickhouse://host?compress_block_size=test')
+            Client.from_url('datastore://host?compress_block_size=test')
 
-        c = Client.from_url('clickhouse://host?compress_block_size=100500')
+        c = Client.from_url('datastore://host?compress_block_size=100500')
         # compression is not set
         self.assertIsNone(c.connection.compress_block_size)
 
         c = Client.from_url(
-            'clickhouse://host?'
+            'datastore://host?'
             'compress_block_size=100500&'
             'compression=1'
         )
@@ -140,7 +140,7 @@ class ClientFromUrlTestCase(TestCase):
 
     def test_settings(self):
         c = Client.from_url(
-            'clickhouse://host?'
+            'datastore://host?'
             'send_logs_level=trace&'
             'max_block_size=123'
         )
@@ -151,7 +151,7 @@ class ClientFromUrlTestCase(TestCase):
 
     def test_ssl(self):
         c = Client.from_url(
-            'clickhouses://host?'
+            'datastores://host?'
             'verify=false&'
             'ssl_version=PROTOCOL_SSLv23&'
             'ca_certs=/tmp/certs&'
@@ -165,7 +165,7 @@ class ClientFromUrlTestCase(TestCase):
 
     def test_ssl_key_cert(self):
         base_url = (
-            'clickhouses://host?'
+            'datastores://host?'
             'verify=true&'
             'ssl_version=PROTOCOL_SSLv23&'
             'ca_certs=/tmp/certs&'
@@ -200,37 +200,37 @@ class ClientFromUrlTestCase(TestCase):
         self.assertEqual(c.connection.ssl_options, expected)
 
     def test_alt_hosts(self):
-        c = Client.from_url('clickhouse://host?alt_hosts=host2:1234')
+        c = Client.from_url('datastore://host?alt_hosts=host2:1234')
         self.assertHostsEqual(c, [('host', 9000), ('host2', 1234)])
 
-        c = Client.from_url('clickhouse://host?alt_hosts=host2')
+        c = Client.from_url('datastore://host?alt_hosts=host2')
         self.assertHostsEqual(c, [('host', 9000), ('host2', 9000)])
 
     def test_parameters_cast(self):
-        c = Client.from_url('clickhouse://host?insert_block_size=123')
+        c = Client.from_url('datastore://host?insert_block_size=123')
         self.assertEqual(
             c.connection.context.client_settings['insert_block_size'], 123
         )
 
     def test_settings_is_important(self):
-        c = Client.from_url('clickhouse://host?settings_is_important=1')
+        c = Client.from_url('datastore://host?settings_is_important=1')
         self.assertEqual(c.connection.settings_is_important, True)
 
         with self.assertRaises(ValueError):
-            c = Client.from_url('clickhouse://host?settings_is_important=2')
+            c = Client.from_url('datastore://host?settings_is_important=2')
             self.assertEqual(c.connection.settings_is_important, True)
 
-        c = Client.from_url('clickhouse://host?settings_is_important=0')
+        c = Client.from_url('datastore://host?settings_is_important=0')
         self.assertEqual(c.connection.settings_is_important, False)
 
     @check_numpy
     def test_use_numpy(self):
-        c = Client.from_url('clickhouse://host?use_numpy=true')
+        c = Client.from_url('datastore://host?use_numpy=true')
         self.assertTrue(c.connection.context.client_settings['use_numpy'])
 
     def test_opentelemetry(self):
         c = Client.from_url(
-            'clickhouse://host?opentelemetry_traceparent='
+            'datastore://host?opentelemetry_traceparent='
             '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-00'
         )
         self.assertEqual(
@@ -243,7 +243,7 @@ class ClientFromUrlTestCase(TestCase):
         )
 
         c = Client.from_url(
-            'clickhouse://host?opentelemetry_traceparent='
+            'datastore://host?opentelemetry_traceparent='
             '00-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-bbbbbbbbbbbbbbbb-00&'
             'opentelemetry_tracestate=state'
         )
@@ -257,34 +257,34 @@ class ClientFromUrlTestCase(TestCase):
         )
 
     def test_quota_key(self):
-        c = Client.from_url('clickhouse://host?quota_key=myquota')
+        c = Client.from_url('datastore://host?quota_key=myquota')
         self.assertEqual(
             c.connection.context.client_settings['quota_key'], 'myquota'
         )
 
-        c = Client.from_url('clickhouse://host')
+        c = Client.from_url('datastore://host')
         self.assertEqual(
             c.connection.context.client_settings['quota_key'], ''
         )
 
     def test_round_robin(self):
-        c = Client.from_url('clickhouse://host?alt_hosts=host2')
+        c = Client.from_url('datastore://host?alt_hosts=host2')
         self.assertEqual(len(c.connections), 0)
 
         c = Client.from_url(
-            'clickhouse://host?round_robin=true&alt_hosts=host2'
+            'datastore://host?round_robin=true&alt_hosts=host2'
         )
         self.assertEqual(len(c.connections), 1)
 
     def test_tcp_keepalive(self):
-        c = Client.from_url('clickhouse://host?tcp_keepalive=true')
+        c = Client.from_url('datastore://host?tcp_keepalive=true')
         self.assertTrue(c.connection.tcp_keepalive)
 
-        c = Client.from_url('clickhouse://host?tcp_keepalive=10,2,3')
+        c = Client.from_url('datastore://host?tcp_keepalive=10,2,3')
         self.assertEqual(
             c.connection.tcp_keepalive, (10, 2, 3)
         )
 
     def test_client_revision(self):
-        c = Client.from_url('clickhouse://host?client_revision=54032')
+        c = Client.from_url('datastore://host?client_revision=54032')
         self.assertEqual(c.connection.client_revision, 54032)

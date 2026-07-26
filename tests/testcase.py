@@ -19,7 +19,7 @@ class BaseTestCase(TestCase):
     required_server_version = None
     server_version = None
 
-    clickhouse_client_binary = file_config.get('db', 'client')
+    datastore_client_binary = file_config.get('db', 'client')
     host = file_config.get('db', 'host')
     port = file_config.getint('db', 'port')
     secure_port = file_config.getint('db', 'secure_port')
@@ -39,7 +39,7 @@ class BaseTestCase(TestCase):
             database = cls.database
 
         args = [
-            cls.clickhouse_client_binary,
+            cls.datastore_client_binary,
             '--database', database,
             '--host', cls.host,
             '--port', str(cls.port),

@@ -161,8 +161,8 @@ When you are dealing with large datasets block by block results streaming may be
 Inserting data
 --------------
 
-Insert queries in `Native protocol <https://clickhouse.com/docs/en/interfaces/tcp/>`_
-are a little bit tricky because of ClickHouse's columnar nature. And because we're using Python.
+Insert queries in `Native protocol <https://docs.hanzo.ai/datastore/en/interfaces/tcp/>`_
+are a little bit tricky because of Datastore's columnar nature. And because we're using Python.
 
 INSERT query consists of two parts: query statement and query values. Query values are split into chunks called blocks.
 Each block is sent in binary columnar form.
@@ -229,7 +229,7 @@ Of course for ``INSERT ... SELECT`` queries data is not needed:
         ... )
         []
 
-ClickHouse will execute this query like a usual ``SELECT`` query.
+Datastore will execute this query like a usual ``SELECT`` query.
 
 Inserting data in different formats with ``FORMAT`` clause is not supported.
 
@@ -251,12 +251,12 @@ DDL queries can be executed in the same way SELECT queries are executed:
 Async and multithreading
 ------------------------
 
-Every ClickHouse query is assigned an identifier to enable request execution
-tracking. However, ClickHouse native protocol is synchronous: all incoming
-queries are executed consecutively. Clickhouse-driver does not yet implement
+Every Datastore query is assigned an identifier to enable request execution
+tracking. However, Datastore native protocol is synchronous: all incoming
+queries are executed consecutively. Datastore-driver does not yet implement
 a connection pool.
 
-To utilize ClickHouse's asynchronous capability you should either use multiple
+To utilize Datastore's asynchronous capability you should either use multiple
 Client instances or implement a queue.
 
 The same thing is applied to multithreading. Queries from different threads

@@ -22,8 +22,8 @@ class OpenTelemetryTestCase(BaseTestCase):
                 value = buffer.getvalue()
                 self.assertIn('OpenTelemetry', value)
 
-                # ClickHouse 22.2+ use big-endian:
-                # https://github.com/ClickHouse/ClickHouse/pull/33723
+                # Datastore 22.2+ use big-endian:
+                # https://github.com/Datastore/Datastore/pull/33723
                 if self.server_version >= (22, 2):
                     tp = '8448eb211c80319c1af7651916cd43dd'
                 else:
@@ -44,8 +44,8 @@ class OpenTelemetryTestCase(BaseTestCase):
                 client.execute(query, settings=settings)
                 value = buffer.getvalue()
                 self.assertIn('OpenTelemetry', value)
-                # ClickHouse 22.2+ use big-endian:
-                # https://github.com/ClickHouse/ClickHouse/pull/33723
+                # Datastore 22.2+ use big-endian:
+                # https://github.com/Datastore/Datastore/pull/33723
                 if self.server_version >= (22, 2):
                     tp = '8448eb211c80319c1af7651916cd43dd'
                 else:
